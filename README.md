@@ -1,11 +1,11 @@
-# tank-trouble
+# Tank Trouble
 
 ## Inputs
 
 ### Moving
 
-| Key | Description |
-| --- | --- |
+| Key           | Description    |
+| ------------- | -------------- |
 | `arrow up`    | move forward   |
 | `arrow down`  | move backwards |
 | `arrow left`  | rotate left    |
@@ -13,6 +13,6 @@
 
 ### Actions
 
-| Key | Description |
-| --- | --- |
+| Key     | Description  |
+| ------- | ------------ |
 | `space` | shoot bullet |
