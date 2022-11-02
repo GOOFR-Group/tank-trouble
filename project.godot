@@ -45,6 +45,10 @@ shoot={
  ]
 }
 
+[mono]
+
+project/assembly_name="tank-trouble"
+
 [physics]
 
 common/enable_pause_aware_picking=true
