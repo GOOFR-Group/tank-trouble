@@ -23,7 +23,7 @@ func _physics_process(delta :float):
 	# Update rotation
 	if Input.is_action_pressed("rotate_left"):
 		rotate(deg2rad(-rotation_speed) * delta)
-	elif Input.is_action_pressed("rotate_right"):
+	if Input.is_action_pressed("rotate_right"):
 		rotate(deg2rad(rotation_speed) * delta)
 	
 	# Calculate forward vector
@@ -33,5 +33,5 @@ func _physics_process(delta :float):
 	# Update movement
 	if Input.is_action_pressed("move_forward"):
 		move_and_collide(forward_vector * rotation_speed * delta)
-	elif Input.is_action_pressed("move_backwards"):
+	if Input.is_action_pressed("move_backwards"):
 		move_and_collide(-forward_vector * rotation_speed * delta)
