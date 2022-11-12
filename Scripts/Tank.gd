@@ -7,13 +7,11 @@ onready var bullet_scene = preload("res://Prefabs/Bullet.tscn")
 ## Bullet spawn point
 onready var bullet_spawn_point = get_node("./BulletSpawnPoint")
 
-# Speed to move the tank forward/backwards 
-export var speed :int = 200 
 ## Speed to move the tank forward/backwards 
-export var speed :float = 200 
+export var speed :float = 150 
 
 ## Speed to rotate the tank to the left/right
-export var rotation_speed :float = 1.5
+export var rotation_speed :float = 2.5
 
 ## Delay in seconds between shoots
 export var shoot_delay :float = 0.25
