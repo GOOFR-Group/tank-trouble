@@ -41,12 +41,18 @@ func _physics_process(delta :float):
 	var move_direction = _input_move()
 	move_and_slide(move_direction * forward_vector * speed)
 
-## Update rotation
+## Returns the direction of the rotation
+## 0  = no rotation
+## -1 = left
+## 1  = right
 ## This function must be override
 func _input_rotate() -> int:
 	return 0
 
-## Update movement
+## Returns the direction of the movement
+## 0  = no movement
+## -1 = backwards
+## 1  = forward
 ## This function must be override
 func _input_move() -> int:
 	return 0
