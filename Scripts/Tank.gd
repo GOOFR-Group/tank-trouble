@@ -22,7 +22,7 @@ func _process(delta :float):
 	current_shoot_delay = clamp(current_shoot_delay + delta, 0, shoot_delay)
 	
 	# Shoot
-	if Input.is_action_pressed("p1_shoot") && current_shoot_delay == shoot_delay:
+	if _input_shoot() && current_shoot_delay == shoot_delay:
 		var bullet = bullet_scene.instance()
 		bullet.set_position(bullet_spawn_point.get_global_position())
 		bullet.set_rotation(bullet_spawn_point.get_global_rotation())
@@ -56,3 +56,8 @@ func _input_rotate() -> int:
 ## This function must be override
 func _input_move() -> int:
 	return 0
+	
+## Returns true to shoot
+## This function must be override
+func _input_shoot() -> bool:
+	return false
