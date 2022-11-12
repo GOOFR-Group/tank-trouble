@@ -1,8 +1,12 @@
 # Tank Trouble
 
+## Description
+
+The Tank Trouble
+
 ## Inputs
 
-### Moving
+### Player 1
 
 | Key           | Description    |
 | ------------- | -------------- |
@@ -10,9 +14,14 @@
 | `arrow down`  | move backwards |
 | `arrow left`  | rotate left    |
 | `arrow right` | rotate right   |
+| `space`       | shoot bullet   |
 
-### Actions
+### Player 2
 
-| Key     | Description  |
-| ------- | ------------ |
-| `space` | shoot bullet |
+| Key | Description    |
+| --- | -------------- |
+| `w` | move forward   |
+| `s` | move backwards |
+| `a` | rotate left    |
+| `d` | rotate right   |
+| `q` | shoot bullet   |
