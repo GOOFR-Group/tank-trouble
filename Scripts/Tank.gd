@@ -3,6 +3,8 @@ extends KinematicBody2D
 # Scenes
 onready var main_scene = get_tree().root
 onready var bullet_scene = preload("res://Prefabs/Bullet.tscn")
+
+## Bullet spawn point
 onready var bullet_spawn_point = get_node("./BulletSpawnPoint")
 
 # Speed to move the tank forward/backwards 
