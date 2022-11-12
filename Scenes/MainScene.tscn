@@ -7,6 +7,12 @@
 
 [node name="Player1Tank" parent="." instance=ExtResource( 1 )]
 position = Vector2( 961, 543 )
+rotation = -1.5708
+speed = 200
+rotation_speed = 1
 
 [node name="Player2Tank" parent="." instance=ExtResource( 2 )]
 position = Vector2( 43, 46 )
+rotation = 1.5708
+speed = 200
+rotation_speed = 1
