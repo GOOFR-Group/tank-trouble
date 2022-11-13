@@ -1,14 +1,31 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Tank.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/Tank.png" type="Texture" id=2]
 
-[node name="Tank" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 11.5 )
+
+[node name="Tank" type="KinematicBody2D" groups=["player"]]
 physics_interpolation_mode = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="." groups=["player"]]
+texture = ExtResource( 2 )
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="." groups=["player"]]
+position = Vector2( 0, 4.5 )
+shape = SubResource( 1 )
+
+[node name="BulletSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 0, -27 )
+
+[node name="BulletTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_shoot_timeout"]

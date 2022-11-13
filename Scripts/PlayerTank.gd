@@ -4,6 +4,7 @@ export var rotate_left_input: String
 export var rotate_righ_input: String
 export var move_backward_input: String
 export var move_forward_input: String
+export var shoot_input: String
 
 func _input_rotate() -> int:
 	var rotation_direction = 0
@@ -20,3 +21,6 @@ func _input_move() -> int:
 	if Input.is_action_pressed(move_forward_input):
 		move_direction += 1
 	return move_direction
+
+func _input_shoot() -> bool:
+	return Input.is_action_pressed(shoot_input)

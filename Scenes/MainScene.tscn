@@ -1,18 +1,35 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Prefabs/Tanks/Player1Tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Tanks/Player2Tank.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 20 )
 
 [node name="MainScene" type="Node2D"]
 
 [node name="Player1Tank" parent="." instance=ExtResource( 1 )]
 position = Vector2( 961, 543 )
 rotation = -1.5708
-speed = 200
-rotation_speed = 1
+speed = 100.0
+rotation_speed = 2.3
 
 [node name="Player2Tank" parent="." instance=ExtResource( 2 )]
 position = Vector2( 43, 46 )
 rotation = 1.5708
-speed = 200
-rotation_speed = 1
+speed = 100.0
+rotation_speed = 2.3
+
+[node name="TestWall" type="StaticBody2D" parent="."]
+position = Vector2( 530, 145 )
+rotation = 0.436332
+scale = Vector2( 1, 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestWall"]
+position = Vector2( 20, 20 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="TestWall"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.658824, 0.717647, 0.133333, 1 )

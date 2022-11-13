@@ -1,23 +1,37 @@
 extends KinematicBody2D
 
-## Speed to move the tank forward/backwards 
-export var speed :float = 200 
+## Speed to move the tank forward/backwards
+export var speed :float = 150 
 
 ## Speed to rotate the tank to the left/right
-export var rotation_speed :float = 1.5
+export var rotation_speed :float = 2.5
 
-## Delay in seconds between shoots
-export var shoot_delay :float = 1
-var current_shoot_delay :float = 0
+## Defines if the player is able to shoot
+var _can_shoot :bool
+
+# Scenes
+onready var main_scene = get_tree().root
+onready var bullet_scene = preload("res://Prefabs/Bullet.tscn")
+
+# Node references
+onready var bullet_spawn_point :Position2D = $BulletSpawnPoint
+onready var bullet_timer :Timer = $BulletTimer
+
+func _ready():
+	_can_shoot = true
 
 func _process(delta :float):
-	# Update timers
-	current_shoot_delay = clamp(current_shoot_delay + delta, 0, shoot_delay)
-	
 	# Shoot
-	if Input.is_action_pressed("p1_shoot") && current_shoot_delay == shoot_delay:
-		print("Shoot") # TODO: Implement this action
-		current_shoot_delay = 0
+	if _input_shoot() && _can_shoot:
+		# Spawn bullet
+		var bullet = bullet_scene.instance()
+		bullet.set_position(bullet_spawn_point.get_global_position())
+		bullet.set_rotation(bullet_spawn_point.get_global_rotation())
+		main_scene.add_child(bullet)
+		
+		# Reset bullet timer
+		bullet_timer.start()
+		_can_shoot = false
 
 func _physics_process(delta :float):
 	# Rotate
@@ -29,12 +43,26 @@ func _physics_process(delta :float):
 	var move_direction = _input_move()
 	move_and_slide(move_direction * forward_vector * speed)
 
-## Update rotation
+## Returns the direction of the rotation
+## 0  = no rotation
+## -1 = left
+## 1  = right
 ## This function must be override
 func _input_rotate() -> int:
 	return 0
 
-## Update movement
+## Returns the direction of the movement
+## 0  = no movement
+## -1 = backwards
+## 1  = forward
 ## This function must be override
 func _input_move() -> int:
 	return 0
+	
+## Returns true to shoot
+## This function must be override
+func _input_shoot() -> bool:
+	return false
+	
+func _on_shoot_timeout():
+	_can_shoot = true
