@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal killed()
+
 ## Speed to move the tank forward/backwards
 export var speed :float = 150 
 
@@ -12,6 +14,7 @@ var _can_shoot :bool
 # Scenes
 onready var main_scene = get_tree().root
 onready var bullet_scene = preload("res://Prefabs/Bullet.tscn")
+onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
 
 # Node references
 onready var bullet_spawn_point :Position2D = $BulletSpawnPoint
@@ -66,3 +69,12 @@ func _input_shoot() -> bool:
 	
 func _on_shoot_timeout():
 	_can_shoot = true
+
+func _on_killed() -> void:
+	# Spawn explosion
+	var explosion = explosion_scene.instance()
+	explosion.set_position(position)
+	main_scene.add_child(explosion)
+	
+	# Destroy self
+	queue_free()

@@ -16,7 +16,7 @@ func _physics_process(delta :float) -> void:
 	if collision != null:
 		# Destroy the player on collision
 		if collision.collider.is_in_group(player_tag):
-			collision.collider.queue_free()
+			collision.collider.emit_signal("killed")
 			queue_free()
 			return
 		
