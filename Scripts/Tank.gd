@@ -3,6 +3,9 @@ extends KinematicBody2D
 signal killed()
 
 ## Speed to move the tank forward/backwards
+export var playerName :String = "" 
+
+## Speed to move the tank forward/backwards
 export var speed :float = 150 
 
 ## Speed to rotate the tank to the left/right
@@ -71,6 +74,8 @@ func _on_shoot_timeout():
 	_can_shoot = true
 
 func _on_killed() -> void:
+	GameManager.gameOver(playerName)
+	
 	# Spawn explosion
 	var explosion = explosion_scene.instance()
 	explosion.set_position(position)
