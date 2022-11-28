@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal killed()
 
-## Speed to move the tank forward/backwards
+## Player name
 export var playerName :String = "" 
 
 ## Speed to move the tank forward/backwards
