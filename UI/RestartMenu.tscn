@@ -79,4 +79,4 @@ text = "Restart"
 anims/RESET = SubResource( 1 )
 anims/show = SubResource( 2 )
 
-[connection signal="button_down" from="Background/RestartBTN" to="." method="_on_RestartBTN_button_down"]
+[connection signal="button_down" from="Background/RestartBTN" to="." method="_on_restart_button_down"]
