@@ -1,22 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Prefabs/Tanks/Player1Tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Tanks/Player2Tank.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/RestartMenu.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 20 )
 
 [node name="MainScene" type="Node2D"]
 
+[node name="UI" parent="." instance=ExtResource( 3 )]
+
 [node name="Player1Tank" parent="." instance=ExtResource( 1 )]
-position = Vector2( 961, 543 )
+position = Vector2( 974, 550 )
 rotation = -1.5708
+playerName = "Player 1"
 speed = 100.0
 rotation_speed = 2.3
 
 [node name="Player2Tank" parent="." instance=ExtResource( 2 )]
-position = Vector2( 43, 46 )
+position = Vector2( 50, 50 )
 rotation = 1.5708
+playerName = "Player 2"
 speed = 100.0
 rotation_speed = 2.3
 
