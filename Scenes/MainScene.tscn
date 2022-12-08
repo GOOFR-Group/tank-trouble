@@ -1,40 +1,6881 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Prefabs/Tanks/Player1Tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Tanks/Player2Tank.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/RestartMenu.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 20 )
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.823529, 0.823529, 0.823529, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 0.294118, 0.294118, 0.294118, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+width = 10
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 5, 35 )
 
 [node name="MainScene" type="Node2D"]
 
 [node name="UI" parent="." instance=ExtResource( 3 )]
 
+[node name="Map" type="Node2D" parent="."]
+position = Vector2( 20, 15 )
+
+[node name="Background" type="Node2D" parent="Map"]
+
+[node name="Sprite" type="Sprite" parent="Map/Background"]
+scale = Vector2( 0.483, 565 )
+z_index = -1
+texture = SubResource( 3 )
+centered = false
+
+[node name="Walls" type="Node2D" parent="Map"]
+
+[node name="Block1" type="Node2D" parent="Map/Walls"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block1"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block1/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block1/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block1"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block1/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block1/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block1"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block1/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block1/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block1"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block1/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block1/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block2" type="Node2D" parent="Map/Walls"]
+position = Vector2( 70, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block2"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block2/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block2/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block2"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block2/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block2/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block2"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block2/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block2/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block2"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block2/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block2/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block3" type="Node2D" parent="Map/Walls"]
+position = Vector2( 140, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block3"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block3/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block3/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block3"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block3/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block3/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block3"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block3/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block3/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block3"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block3/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block3/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block4" type="Node2D" parent="Map/Walls"]
+position = Vector2( 210, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block4"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block4/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block4/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block4"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block4/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block4/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block4"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block4/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block4/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block4"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block4/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block4/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block5" type="Node2D" parent="Map/Walls"]
+position = Vector2( 280, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block5"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block5/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block5/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block5"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block5/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block5/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block5"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block5/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block5/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block5"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block5/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block5/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block6" type="Node2D" parent="Map/Walls"]
+position = Vector2( 350, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block6"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block6/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block6/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block6"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block6/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block6/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block6"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block6/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block6/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block6"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block6/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block6/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block7" type="Node2D" parent="Map/Walls"]
+position = Vector2( 420, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block7"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block7/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block7/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block7"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block7/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block7/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block7"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block7/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block7/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block7"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block7/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block7/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block8" type="Node2D" parent="Map/Walls"]
+position = Vector2( 490, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block8"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block8/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block8/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block8"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block8/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block8/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block8"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block8/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block8/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block8"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block8/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block8/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block9" type="Node2D" parent="Map/Walls"]
+position = Vector2( 560, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block9"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block9/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block9/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block9"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block9/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block9/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block9"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block9/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block9/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block9"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block9/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block9/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block10" type="Node2D" parent="Map/Walls"]
+position = Vector2( 630, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block10"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block10/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block10/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block10"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block10/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block10/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block10"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block10/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block10/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block10"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block10/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block10/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block11" type="Node2D" parent="Map/Walls"]
+position = Vector2( 700, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block11"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block11/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block11/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block11"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block11/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block11/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block11"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block11/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block11/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block11"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block11/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block11/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block12" type="Node2D" parent="Map/Walls"]
+position = Vector2( 770, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block12"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block12/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block12/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block12"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block12/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block12/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block12"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block12/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block12/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block12"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block12/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block12/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block13" type="Node2D" parent="Map/Walls"]
+position = Vector2( 840, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block13"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block13/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block13/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block13"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block13/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block13/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block13"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block13/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block13/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block13"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block13/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block13/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block14" type="Node2D" parent="Map/Walls"]
+position = Vector2( 910, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block14"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block14/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block14/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block14"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block14/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block14/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block14"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block14/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block14/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block14"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block14/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block14/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block15" type="Node2D" parent="Map/Walls"]
+position = Vector2( 0, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block15"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block15/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block15/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block15"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block15/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block15/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block15"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block15/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block15/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block15"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block15/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block15/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block16" type="Node2D" parent="Map/Walls"]
+position = Vector2( 70, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block16"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block16/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block16/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block16"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block16/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block16/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block16"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block16/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block16/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block16"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block16/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block16/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block17" type="Node2D" parent="Map/Walls"]
+position = Vector2( 140, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block17"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block17/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block17/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block17"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block17/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block17/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block17"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block17/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block17/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block17"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block17/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block17/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block18" type="Node2D" parent="Map/Walls"]
+position = Vector2( 210, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block18"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block18/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block18/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block18"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block18/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block18/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block18"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block18/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block18/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block18"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block18/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block18/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block19" type="Node2D" parent="Map/Walls"]
+position = Vector2( 280, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block19"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block19/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block19/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block19"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block19/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block19/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block19"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block19/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block19/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block19"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block19/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block19/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block20" type="Node2D" parent="Map/Walls"]
+position = Vector2( 350, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block20"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block20/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block20/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block20"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block20/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block20/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block20"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block20/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block20/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block20"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block20/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block20/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block21" type="Node2D" parent="Map/Walls"]
+position = Vector2( 420, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block21"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block21/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block21/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block21"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block21/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block21/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block21"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block21/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block21/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block21"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block21/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block21/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block22" type="Node2D" parent="Map/Walls"]
+position = Vector2( 490, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block22"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block22/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block22/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block22"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block22/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block22/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block22"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block22/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block22/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block22"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block22/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block22/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block23" type="Node2D" parent="Map/Walls"]
+position = Vector2( 560, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block23"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block23/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block23/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block23"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block23/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block23/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block23"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block23/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block23/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block23"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block23/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block23/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block24" type="Node2D" parent="Map/Walls"]
+position = Vector2( 630, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block24"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block24/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block24/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block24"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block24/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block24/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block24"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block24/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block24/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block24"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block24/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block24/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block25" type="Node2D" parent="Map/Walls"]
+position = Vector2( 700, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block25"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block25/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block25/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block25"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block25/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block25/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block25"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block25/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block25/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block25"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block25/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block25/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block26" type="Node2D" parent="Map/Walls"]
+position = Vector2( 770, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block26"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block26/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block26/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block26"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block26/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block26/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block26"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block26/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block26/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block26"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block26/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block26/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block27" type="Node2D" parent="Map/Walls"]
+position = Vector2( 840, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block27"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block27/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block27/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block27"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block27/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block27/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block27"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block27/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block27/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block27"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block27/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block27/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block28" type="Node2D" parent="Map/Walls"]
+position = Vector2( 910, 70 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block28"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block28/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block28/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block28"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block28/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block28/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block28"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block28/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block28/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block28"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block28/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block28/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block29" type="Node2D" parent="Map/Walls"]
+position = Vector2( 0, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block29"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block29/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block29/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block29"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block29/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block29/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block29"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block29/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block29/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block29"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block29/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block29/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block30" type="Node2D" parent="Map/Walls"]
+position = Vector2( 70, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block30"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block30/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block30/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block30"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block30/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block30/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block30"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block30/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block30/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block30"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block30/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block30/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block31" type="Node2D" parent="Map/Walls"]
+position = Vector2( 140, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block31"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block31/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block31/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block31"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block31/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block31/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block31"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block31/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block31/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block31"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block31/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block31/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block32" type="Node2D" parent="Map/Walls"]
+position = Vector2( 210, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block32"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block32/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block32/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block32"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block32/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block32/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block32"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block32/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block32/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block32"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block32/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block32/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block33" type="Node2D" parent="Map/Walls"]
+position = Vector2( 280, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block33"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block33/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block33/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block33"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block33/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block33/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block33"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block33/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block33/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block33"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block33/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block33/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block34" type="Node2D" parent="Map/Walls"]
+position = Vector2( 350, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block34"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block34/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block34/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block34"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block34/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block34/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block34"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block34/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block34/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block34"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block34/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block34/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block35" type="Node2D" parent="Map/Walls"]
+position = Vector2( 420, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block35"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block35/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block35/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block35"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block35/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block35/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block35"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block35/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block35/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block35"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block35/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block35/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block36" type="Node2D" parent="Map/Walls"]
+position = Vector2( 490, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block36"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block36/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block36/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block36"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block36/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block36/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block36"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block36/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block36/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block36"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block36/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block36/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block37" type="Node2D" parent="Map/Walls"]
+position = Vector2( 560, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block37"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block37/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block37/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block37"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block37/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block37/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block37"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block37/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block37/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block37"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block37/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block37/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block38" type="Node2D" parent="Map/Walls"]
+position = Vector2( 630, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block38"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block38/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block38/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block38"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block38/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block38/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block38"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block38/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block38/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block38"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block38/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block38/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block39" type="Node2D" parent="Map/Walls"]
+position = Vector2( 700, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block39"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block39/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block39/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block39"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block39/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block39/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block39"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block39/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block39/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block39"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block39/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block39/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block40" type="Node2D" parent="Map/Walls"]
+position = Vector2( 770, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block40"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block40/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block40/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block40"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block40/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block40/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block40"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block40/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block40/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block40"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block40/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block40/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block41" type="Node2D" parent="Map/Walls"]
+position = Vector2( 840, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block41"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block41/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block41/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block41"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block41/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block41/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block41"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block41/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block41/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block41"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block41/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block41/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block42" type="Node2D" parent="Map/Walls"]
+position = Vector2( 910, 140 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block42"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block42/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block42/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block42"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block42/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block42/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block42"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block42/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block42/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block42"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block42/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block42/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block43" type="Node2D" parent="Map/Walls"]
+position = Vector2( 0, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block43"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block43/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block43/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block43"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block43/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block43/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block43"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block43/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block43/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block43"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block43/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block43/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block44" type="Node2D" parent="Map/Walls"]
+position = Vector2( 70, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block44"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block44/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block44/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block44"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block44/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block44/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block44"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block44/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block44/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block44"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block44/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block44/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block45" type="Node2D" parent="Map/Walls"]
+position = Vector2( 140, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block45"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block45/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block45/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block45"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block45/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block45/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block45"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block45/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block45/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block45"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block45/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block45/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block46" type="Node2D" parent="Map/Walls"]
+position = Vector2( 210, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block46"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block46/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block46/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block46"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block46/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block46/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block46"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block46/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block46/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block46"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block46/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block46/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block47" type="Node2D" parent="Map/Walls"]
+position = Vector2( 280, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block47"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block47/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block47/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block47"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block47/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block47/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block47"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block47/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block47/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block47"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block47/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block47/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block48" type="Node2D" parent="Map/Walls"]
+position = Vector2( 350, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block48"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block48/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block48/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block48"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block48/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block48/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block48"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block48/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block48/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block48"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block48/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block48/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block49" type="Node2D" parent="Map/Walls"]
+position = Vector2( 420, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block49"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block49/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block49/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block49"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block49/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block49/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block49"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block49/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block49/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block49"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block49/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block49/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block50" type="Node2D" parent="Map/Walls"]
+position = Vector2( 490, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block50"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block50/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block50/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block50"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block50/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block50/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block50"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block50/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block50/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block50"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block50/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block50/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block51" type="Node2D" parent="Map/Walls"]
+position = Vector2( 560, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block51"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block51/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block51/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block51"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block51/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block51/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block51"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block51/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block51/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block51"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block51/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block51/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block52" type="Node2D" parent="Map/Walls"]
+position = Vector2( 630, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block52"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block52/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block52/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block52"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block52/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block52/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block52"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block52/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block52/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block52"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block52/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block52/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block53" type="Node2D" parent="Map/Walls"]
+position = Vector2( 700, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block53"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block53/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block53/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block53"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block53/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block53/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block53"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block53/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block53/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block53"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block53/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block53/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block54" type="Node2D" parent="Map/Walls"]
+position = Vector2( 770, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block54"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block54/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block54/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block54"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block54/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block54/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block54"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block54/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block54/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block54"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block54/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block54/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block55" type="Node2D" parent="Map/Walls"]
+position = Vector2( 840, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block55"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block55/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block55/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block55"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block55/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block55/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block55"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block55/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block55/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block55"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block55/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block55/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block56" type="Node2D" parent="Map/Walls"]
+position = Vector2( 910, 210 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block56"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block56/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block56/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block56"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block56/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block56/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block56"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block56/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block56/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block56"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block56/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block56/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block57" type="Node2D" parent="Map/Walls"]
+position = Vector2( 0, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block57"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block57/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block57/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block57"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block57/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block57/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block57"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block57/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block57/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block57"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block57/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block57/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block58" type="Node2D" parent="Map/Walls"]
+position = Vector2( 70, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block58"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block58/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block58/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block58"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block58/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block58/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block58"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block58/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block58/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block58"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block58/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block58/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block59" type="Node2D" parent="Map/Walls"]
+position = Vector2( 140, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block59"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block59/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block59/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block59"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block59/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block59/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block59"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block59/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block59/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block59"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block59/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block59/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block60" type="Node2D" parent="Map/Walls"]
+position = Vector2( 210, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block60"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block60/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block60/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block60"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block60/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block60/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block60"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block60/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block60/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block60"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block60/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block60/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block61" type="Node2D" parent="Map/Walls"]
+position = Vector2( 280, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block61"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block61/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block61/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block61"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block61/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block61/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block61"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block61/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block61/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block61"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block61/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block61/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block62" type="Node2D" parent="Map/Walls"]
+position = Vector2( 350, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block62"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block62/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block62/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block62"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block62/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block62/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block62"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block62/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block62/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block62"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block62/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block62/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block63" type="Node2D" parent="Map/Walls"]
+position = Vector2( 420, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block63"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block63/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block63/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block63"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block63/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block63/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block63"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block63/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block63/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block63"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block63/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block63/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block64" type="Node2D" parent="Map/Walls"]
+position = Vector2( 490, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block64"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block64/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block64/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block64"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block64/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block64/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block64"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block64/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block64/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block64"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block64/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block64/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block65" type="Node2D" parent="Map/Walls"]
+position = Vector2( 560, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block65"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block65/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block65/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block65"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block65/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block65/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block65"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block65/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block65/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block65"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block65/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block65/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block66" type="Node2D" parent="Map/Walls"]
+position = Vector2( 630, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block66"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block66/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block66/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block66"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block66/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block66/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block66"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block66/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block66/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block66"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block66/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block66/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block67" type="Node2D" parent="Map/Walls"]
+position = Vector2( 700, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block67"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block67/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block67/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block67"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block67/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block67/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block67"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block67/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block67/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block67"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block67/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block67/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block68" type="Node2D" parent="Map/Walls"]
+position = Vector2( 770, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block68"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block68/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block68/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block68"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block68/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block68/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block68"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block68/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block68/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block68"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block68/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block68/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block69" type="Node2D" parent="Map/Walls"]
+position = Vector2( 840, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block69"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block69/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block69/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block69"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block69/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block69/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block69"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block69/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block69/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block69"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block69/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block69/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block70" type="Node2D" parent="Map/Walls"]
+position = Vector2( 910, 280 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block70"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block70/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block70/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block70"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block70/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block70/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block70"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block70/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block70/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block70"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block70/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block70/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block71" type="Node2D" parent="Map/Walls"]
+position = Vector2( 0, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block71"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block71/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block71/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block71"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block71/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block71/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block71"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block71/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block71/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block71"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block71/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block71/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block72" type="Node2D" parent="Map/Walls"]
+position = Vector2( 70, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block72"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block72/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block72/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block72"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block72/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block72/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block72"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block72/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block72/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block72"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block72/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block72/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block73" type="Node2D" parent="Map/Walls"]
+position = Vector2( 140, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block73"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block73/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block73/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block73"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block73/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block73/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block73"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block73/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block73/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block73"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block73/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block73/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block74" type="Node2D" parent="Map/Walls"]
+position = Vector2( 210, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block74"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block74/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block74/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block74"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block74/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block74/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block74"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block74/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block74/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block74"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block74/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block74/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block75" type="Node2D" parent="Map/Walls"]
+position = Vector2( 280, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block75"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block75/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block75/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block75"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block75/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block75/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block75"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block75/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block75/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block75"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block75/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block75/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block76" type="Node2D" parent="Map/Walls"]
+position = Vector2( 350, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block76"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block76/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block76/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block76"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block76/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block76/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block76"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block76/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block76/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block76"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block76/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block76/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block77" type="Node2D" parent="Map/Walls"]
+position = Vector2( 420, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block77"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block77/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block77/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block77"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block77/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block77/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block77"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block77/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block77/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block77"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block77/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block77/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block78" type="Node2D" parent="Map/Walls"]
+position = Vector2( 490, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block78"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block78/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block78/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block78"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block78/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block78/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block78"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block78/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block78/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block78"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block78/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block78/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block79" type="Node2D" parent="Map/Walls"]
+position = Vector2( 560, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block79"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block79/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block79/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block79"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block79/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block79/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block79"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block79/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block79/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block79"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block79/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block79/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block80" type="Node2D" parent="Map/Walls"]
+position = Vector2( 630, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block80"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block80/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block80/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block80"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block80/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block80/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block80"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block80/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block80/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block80"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block80/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block80/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block81" type="Node2D" parent="Map/Walls"]
+position = Vector2( 700, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block81"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block81/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block81/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block81"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block81/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block81/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block81"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block81/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block81/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block81"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block81/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block81/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block82" type="Node2D" parent="Map/Walls"]
+position = Vector2( 770, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block82"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block82/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block82/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block82"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block82/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block82/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block82"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block82/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block82/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block82"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block82/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block82/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block83" type="Node2D" parent="Map/Walls"]
+position = Vector2( 840, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block83"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block83/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block83/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block83"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block83/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block83/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block83"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block83/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block83/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block83"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block83/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block83/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block84" type="Node2D" parent="Map/Walls"]
+position = Vector2( 910, 350 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block84"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block84/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block84/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block84"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block84/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block84/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block84"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block84/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block84/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block84"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block84/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block84/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block85" type="Node2D" parent="Map/Walls"]
+position = Vector2( 0, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block85"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block85/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block85/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block85"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block85/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block85/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block85"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block85/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block85/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block85"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block85/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block85/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block86" type="Node2D" parent="Map/Walls"]
+position = Vector2( 70, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block86"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block86/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block86/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block86"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block86/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block86/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block86"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block86/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block86/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block86"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block86/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block86/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block87" type="Node2D" parent="Map/Walls"]
+position = Vector2( 140, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block87"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block87/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block87/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block87"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block87/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block87/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block87"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block87/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block87/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block87"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block87/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block87/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block88" type="Node2D" parent="Map/Walls"]
+position = Vector2( 210, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block88"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block88/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block88/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block88"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block88/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block88/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block88"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block88/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block88/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block88"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block88/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block88/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block89" type="Node2D" parent="Map/Walls"]
+position = Vector2( 280, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block89"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block89/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block89/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block89"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block89/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block89/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block89"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block89/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block89/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block89"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block89/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block89/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block90" type="Node2D" parent="Map/Walls"]
+position = Vector2( 350, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block90"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block90/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block90/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block90"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block90/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block90/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block90"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block90/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block90/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block90"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block90/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block90/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block91" type="Node2D" parent="Map/Walls"]
+position = Vector2( 420, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block91"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block91/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block91/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block91"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block91/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block91/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block91"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block91/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block91/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block91"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block91/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block91/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block92" type="Node2D" parent="Map/Walls"]
+position = Vector2( 490, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block92"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block92/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block92/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block92"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block92/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block92/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block92"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block92/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block92/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block92"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block92/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block92/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block93" type="Node2D" parent="Map/Walls"]
+position = Vector2( 560, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block93"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block93/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block93/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block93"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block93/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block93/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block93"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block93/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block93/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block93"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block93/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block93/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block94" type="Node2D" parent="Map/Walls"]
+position = Vector2( 630, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block94"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block94/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block94/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block94"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block94/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block94/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block94"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block94/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block94/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block94"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block94/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block94/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block95" type="Node2D" parent="Map/Walls"]
+position = Vector2( 700, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block95"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block95/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block95/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block95"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block95/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block95/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block95"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block95/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block95/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block95"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block95/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block95/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block96" type="Node2D" parent="Map/Walls"]
+position = Vector2( 770, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block96"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block96/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block96/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block96"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block96/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block96/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block96"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block96/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block96/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block96"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block96/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block96/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block97" type="Node2D" parent="Map/Walls"]
+position = Vector2( 840, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block97"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block97/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block97/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block97"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block97/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block97/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block97"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block97/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block97/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block97"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block97/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block97/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block98" type="Node2D" parent="Map/Walls"]
+position = Vector2( 910, 419 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block98"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block98/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block98/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block98"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block98/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block98/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block98"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block98/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block98/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block98"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block98/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block98/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block99" type="Node2D" parent="Map/Walls"]
+position = Vector2( 0, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block99"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block99/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block99/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block99"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block99/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block99/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block99"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block99/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block99/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block99"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block99/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block99/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block100" type="Node2D" parent="Map/Walls"]
+position = Vector2( 70, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block100"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block100/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block100/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block100"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block100/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block100/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block100"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block100/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block100/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block100"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block100/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block100/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block101" type="Node2D" parent="Map/Walls"]
+position = Vector2( 140, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block101"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block101/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block101/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block101"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block101/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block101/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block101"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block101/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block101/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block101"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block101/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block101/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block102" type="Node2D" parent="Map/Walls"]
+position = Vector2( 210, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block102"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block102/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block102/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block102"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block102/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block102/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block102"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block102/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block102/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block102"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block102/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block102/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block103" type="Node2D" parent="Map/Walls"]
+position = Vector2( 280, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block103"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block103/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block103/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block103"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block103/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block103/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block103"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block103/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block103/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block103"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block103/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block103/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block104" type="Node2D" parent="Map/Walls"]
+position = Vector2( 350, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block104"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block104/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block104/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block104"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block104/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block104/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block104"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block104/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block104/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block104"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block104/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block104/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block105" type="Node2D" parent="Map/Walls"]
+position = Vector2( 420, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block105"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block105/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block105/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block105"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block105/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block105/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block105"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block105/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block105/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block105"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block105/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block105/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block106" type="Node2D" parent="Map/Walls"]
+position = Vector2( 490, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block106"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block106/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block106/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block106"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block106/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block106/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block106"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block106/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block106/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block106"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block106/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block106/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block107" type="Node2D" parent="Map/Walls"]
+position = Vector2( 560, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block107"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block107/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block107/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block107"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block107/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block107/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block107"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block107/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block107/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block107"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block107/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block107/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block108" type="Node2D" parent="Map/Walls"]
+position = Vector2( 630, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block108"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block108/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block108/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block108"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block108/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block108/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block108"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block108/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block108/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block108"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block108/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block108/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block109" type="Node2D" parent="Map/Walls"]
+position = Vector2( 700, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block109"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block109/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block109/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block109"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block109/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block109/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block109"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block109/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block109/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block109"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block109/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block109/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block110" type="Node2D" parent="Map/Walls"]
+position = Vector2( 770, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block110"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block110/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block110/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block110"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block110/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block110/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block110"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block110/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block110/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block110"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block110/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block110/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block111" type="Node2D" parent="Map/Walls"]
+position = Vector2( 840, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block111"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block111/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block111/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block111"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block111/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block111/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block111"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block111/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block111/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block111"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block111/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block111/Bottom"]
+shape = SubResource( 6 )
+
+[node name="Block112" type="Node2D" parent="Map/Walls"]
+position = Vector2( 910, 489 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Left" type="StaticBody2D" parent="Map/Walls/Block112"]
+position = Vector2( 5, 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block112/Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block112/Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="Map/Walls/Block112"]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block112/Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block112/Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="Map/Walls/Block112"]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block112/Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block112/Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block112"]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Map/Walls/Block112/Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block112/Bottom"]
+shape = SubResource( 6 )
+
 [node name="Player1Tank" parent="." instance=ExtResource( 1 )]
-position = Vector2( 974, 550 )
+position = Vector2( 965, 545 )
 rotation = -1.5708
 playerName = "Player 1"
-speed = 100.0
-rotation_speed = 2.3
 
 [node name="Player2Tank" parent="." instance=ExtResource( 2 )]
-position = Vector2( 50, 50 )
+position = Vector2( 60, 55 )
 rotation = 1.5708
 playerName = "Player 2"
-speed = 100.0
-rotation_speed = 2.3
-
-[node name="TestWall" type="StaticBody2D" parent="."]
-position = Vector2( 530, 145 )
-rotation = 0.436332
-scale = Vector2( 1, 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestWall"]
-position = Vector2( 20, 20 )
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="TestWall"]
-margin_right = 40.0
-margin_bottom = 40.0
-color = Color( 0.658824, 0.717647, 0.133333, 1 )
