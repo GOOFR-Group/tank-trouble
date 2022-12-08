@@ -9,7 +9,7 @@ export var playerName :String = ""
 export var speed :float = 150 
 
 ## Speed to rotate the tank to the left/right
-export var rotation_speed :float = 2.5
+export var rotation_speed :float = 5
 
 ## Defines if the player is able to shoot
 var _can_shoot :bool
