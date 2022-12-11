@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+# warning-ignore:unused_signal
 signal killed()
 
 ## Player name
@@ -26,7 +27,7 @@ onready var bullet_timer :Timer = $BulletTimer
 func _ready():
 	_can_shoot = true
 
-func _process(delta :float):
+func _process(__ :float):
 	# Shoot
 	if _input_shoot() && _can_shoot:
 		# Spawn bullet
@@ -47,7 +48,8 @@ func _physics_process(delta :float):
 	# Move
 	var forward_vector := Vector2.UP.rotated(rotation)
 	var move_direction = _input_move()
-	move_and_slide(move_direction * forward_vector * speed)
+	var velocity = move_direction * forward_vector * speed
+	velocity = move_and_slide(velocity)
 
 ## Returns the direction of the rotation
 ## 0  = no rotation
