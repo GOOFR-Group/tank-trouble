@@ -16,7 +16,7 @@ var _can_shoot :bool
 
 # Scenes
 onready var main_scene = get_tree().root
-onready var bullet_scene = preload("res://Prefabs/Bullet.tscn")
+onready var bullet_scene = preload("res://Prefabs/Player/Bullet.tscn")
 onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
 
 # Node references

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Prefabs/Tanks/Player1Tank.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Prefabs/Tanks/Player2Tank.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Player/Tanks/Player1Tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Player/Tanks/Player2Tank.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/RestartMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Map/MapBlock.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0 )
@@ -39,65 +40,7 @@ centered = false
 
 [node name="Walls" type="Node2D" parent="Map"]
 
-[node name="Block1" type="Node2D" parent="Map/Walls"]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Left" type="StaticBody2D" parent="Map/Walls/Block1"]
-position = Vector2( 5, 35 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Map/Walls/Block1/Left"]
-scale = Vector2( 1, 70 )
-texture = SubResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block1/Left"]
-shape = SubResource( 6 )
-
-[node name="Top" type="StaticBody2D" parent="Map/Walls/Block1"]
-position = Vector2( 45, 5 )
-rotation = 1.5708
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Map/Walls/Block1/Top"]
-scale = Vector2( 1, 70 )
-texture = SubResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block1/Top"]
-shape = SubResource( 6 )
-
-[node name="Right" type="StaticBody2D" parent="Map/Walls/Block1"]
-position = Vector2( 75, 45 )
-rotation = 3.14159
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Map/Walls/Block1/Right"]
-scale = Vector2( 1, 70 )
-texture = SubResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block1/Right"]
-shape = SubResource( 6 )
-
-[node name="Bottom" type="StaticBody2D" parent="Map/Walls/Block1"]
-position = Vector2( 35, 75 )
-rotation = 4.71239
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Map/Walls/Block1/Bottom"]
-scale = Vector2( 1, 70 )
-texture = SubResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Walls/Block1/Bottom"]
-shape = SubResource( 6 )
+[node name="Block" parent="Map/Walls" instance=ExtResource( 4 )]
 
 [node name="Block2" type="Node2D" parent="Map/Walls"]
 position = Vector2( 70, 0 )
