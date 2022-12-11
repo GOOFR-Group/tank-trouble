@@ -1,40 +1,41 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Prefabs/Tanks/Player1Tank.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Prefabs/Tanks/Player2Tank.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Player/Tanks/Player1Tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Player/Tanks/Player2Tank.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/RestartMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Walls.gd" type="Script" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 20 )
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.823529, 0.823529, 0.823529, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
 [node name="MainScene" type="Node2D"]
 
 [node name="UI" parent="." instance=ExtResource( 3 )]
 
+[node name="Map" type="Node2D" parent="."]
+position = Vector2( 20, 15 )
+
+[node name="Background" type="Node2D" parent="Map"]
+
+[node name="Sprite" type="Sprite" parent="Map/Background"]
+scale = Vector2( 0.483, 565 )
+z_index = -1
+texture = SubResource( 3 )
+centered = false
+
+[node name="Walls" type="Node2D" parent="Map"]
+script = ExtResource( 5 )
+
 [node name="Player1Tank" parent="." instance=ExtResource( 1 )]
-position = Vector2( 974, 550 )
+position = Vector2( 965, 545 )
 rotation = -1.5708
 playerName = "Player 1"
-speed = 100.0
-rotation_speed = 2.3
 
 [node name="Player2Tank" parent="." instance=ExtResource( 2 )]
-position = Vector2( 50, 50 )
+position = Vector2( 60, 55 )
 rotation = 1.5708
 playerName = "Player 2"
-speed = 100.0
-rotation_speed = 2.3
-
-[node name="TestWall" type="StaticBody2D" parent="."]
-position = Vector2( 530, 145 )
-rotation = 0.436332
-scale = Vector2( 1, 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestWall"]
-position = Vector2( 20, 20 )
-shape = SubResource( 1 )
-
-[node name="ColorRect" type="ColorRect" parent="TestWall"]
-margin_right = 40.0
-margin_bottom = 40.0
-color = Color( 0.658824, 0.717647, 0.133333, 1 )

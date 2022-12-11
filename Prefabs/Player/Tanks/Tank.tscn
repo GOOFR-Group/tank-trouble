@@ -21,7 +21,7 @@ position = Vector2( 0, 4.5 )
 shape = SubResource( 1 )
 
 [node name="BulletSpawnPoint" type="Position2D" parent="."]
-position = Vector2( 0, -27 )
+position = Vector2( 0, -20 )
 
 [node name="BulletTimer" type="Timer" parent="."]
 wait_time = 0.25

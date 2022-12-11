@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+# warning-ignore:unused_signal
 signal killed()
 
 ## Player name
@@ -9,14 +10,14 @@ export var playerName :String = ""
 export var speed :float = 150 
 
 ## Speed to rotate the tank to the left/right
-export var rotation_speed :float = 2.5
+export var rotation_speed :float = 5
 
 ## Defines if the player is able to shoot
 var _can_shoot :bool
 
 # Scenes
-onready var main_scene = get_tree().root
-onready var bullet_scene = preload("res://Prefabs/Bullet.tscn")
+onready var main_scene = get_node("/root/MainScene")
+onready var bullet_scene = preload("res://Prefabs/Player/Bullet.tscn")
 onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
 
 # Node references
@@ -26,7 +27,7 @@ onready var bullet_timer :Timer = $BulletTimer
 func _ready():
 	_can_shoot = true
 
-func _process(delta :float):
+func _process(__ :float):
 	# Shoot
 	if _input_shoot() && _can_shoot:
 		# Spawn bullet
@@ -47,7 +48,8 @@ func _physics_process(delta :float):
 	# Move
 	var forward_vector := Vector2.UP.rotated(rotation)
 	var move_direction = _input_move()
-	move_and_slide(move_direction * forward_vector * speed)
+	var velocity = move_direction * forward_vector * speed
+	velocity = move_and_slide(velocity)
 
 ## Returns the direction of the rotation
 ## 0  = no rotation
@@ -73,7 +75,7 @@ func _input_shoot() -> bool:
 func _on_shoot_timeout():
 	_can_shoot = true
 
-func _on_killed() -> void:	
+func _on_killed() -> void:
 	# Spawn explosion
 	var explosion = explosion_scene.instance()
 	explosion.set_position(position)
