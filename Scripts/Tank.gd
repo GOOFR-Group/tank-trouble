@@ -75,7 +75,7 @@ func _input_shoot() -> bool:
 func _on_shoot_timeout():
 	_can_shoot = true
 
-func _on_killed() -> void:	
+func _on_killed() -> void:
 	# Spawn explosion
 	var explosion = explosion_scene.instance()
 	explosion.set_position(position)
