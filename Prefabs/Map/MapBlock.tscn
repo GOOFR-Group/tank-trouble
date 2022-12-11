@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 0.294118, 0.294118, 0.294118, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+width = 10
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 5, 35 )
+
+[node name="Block" type="Node2D"]
+
+[node name="Left" type="StaticBody2D" parent="."]
+position = Vector2( 5, 35 )
+
+[node name="Sprite" type="Sprite" parent="Left"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+shape = SubResource( 6 )
+
+[node name="Top" type="StaticBody2D" parent="."]
+position = Vector2( 45, 5 )
+rotation = 1.5708
+
+[node name="Sprite" type="Sprite" parent="Top"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+shape = SubResource( 6 )
+
+[node name="Right" type="StaticBody2D" parent="."]
+position = Vector2( 75, 45 )
+rotation = 3.14159
+
+[node name="Sprite" type="Sprite" parent="Right"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+shape = SubResource( 6 )
+
+[node name="Bottom" type="StaticBody2D" parent="."]
+position = Vector2( 35, 75 )
+rotation = 4.71239
+
+[node name="Sprite" type="Sprite" parent="Bottom"]
+scale = Vector2( 1, 70 )
+texture = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+shape = SubResource( 6 )
