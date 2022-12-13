@@ -9,65 +9,88 @@ export var num_columns :int = 14
 ## Space between blocks
 export var offset = Vector2(70 ,70)
 
-var randomNumberGenerator :RandomNumberGenerator
-
 # Scenes
 onready var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
 
-
-func _ready() -> void:
-	# Set up random number generator
-	randomNumberGenerator = RandomNumberGenerator.new()
-	randomNumberGenerator.randomize()
+func _ready() -> void:	
+	# Set up block states (every block starts with an empty state)
+	var block_states :Array = []
+	for i in num_lines:
+		var column_block_states :Array = []
+		for j in num_columns:
+			column_block_states.append(null)
 	
-	var block_walls_state :Dictionary = {}
+		block_states.append(column_block_states)
 	
+	# Generate the happy path
+	# TODO
+	
+	# Generate the map and spawn the blocks
 	for i in num_lines:
 		for j in num_columns:
+			# Avoid changing the happy path
+			if block_states[i][j] != null:
+				continue
+			
+			# Declare walls state
+			var block_state = BlockState.new(false, false, false, false) 
+			
+			# Rules to generate walls
+			#
+			# 1. A wall is automatically prevented from being opened when:
+			# - It corresponds to an edge
+			# - Its adjacent wall is not opened
+			# 2. A wall might be open when:
+			# - Its adjacent wall is opened
+			
+			# Check for wall limitations (rule 1.)
+			if j == 0:
+				block_state.left_wall = true
+			else:
+				var adjacent_block_state :BlockState = block_states[i][j - 1]
+				if adjacent_block_state != null:
+					block_state.left_wall = adjacent_block_state.right_wall
+			
+			if i == 0:
+				block_state.top_wall = true
+			else:
+				var adjacent_block_state :BlockState = block_states[i - 1][j]
+				if adjacent_block_state != null:
+					block_state.top_wall = adjacent_block_state.bottom_wall
+			
+			if j == num_columns - 1:
+				block_state.right_wall = true
+			else:
+				var adjacent_block_state :BlockState = block_states[i][j + 1]
+				if adjacent_block_state != null:
+					block_state.right_wall = adjacent_block_state.left_wall
+			
+			if i == num_lines - 1:
+				block_state.bottom_wall = true
+			else:
+				var adjacent_block_state :BlockState = block_states[i + 1][j]
+				if adjacent_block_state != null:
+					block_state.bottom_wall = adjacent_block_state.top_wall
+			
+			# Define open walls (rule 2.)
+			if block_state.left_wall == false:
+				block_state.left_wall = _random_open_wall()
+			
+			if block_state.top_wall == false:
+				block_state.top_wall = _random_open_wall()
+			
+			if block_state.right_wall == false:
+				block_state.right_wall = _random_open_wall()
+			
+			if block_state.bottom_wall == false:
+				block_state.bottom_wall = _random_open_wall()
+			
+			# Instantiate block
 			var block = block_scene.instance()
 			
 			# Set block position
 			var block_position := Vector2(offset.x * j, offset.y * i)
 			block.set_position(block_position)
-			
-			# Declare walls state
-			var block_state = BlockState.new(false, false, false, false) 
-			
-			# Check possible wall state limitations
-			# A wall is automatically prevented from being opened when:
-			# - It corresponds to an edge
-			# - Its adjacent wall is not opened
-			if j == 0:
-				block_state.left_wall = true
-			else:
-				var adjacent_walls_state :Dictionary = block_walls_state[i]
-				if adjacent_walls_state != null:
-					var adjacent_block_state :BlockState = adjacent_walls_state[j - 1]
-					if adjacent_block_state != null:
-						block_state.left_wall = adjacent_block_state.right_wall
-			
-			if i == 0:
-				block_state.top_wall = true
-			else:
-				var adjacent_walls_state :Dictionary = block_walls_state[i - 1]
-				if adjacent_walls_state != null:
-					var adjacent_block_state :BlockState = adjacent_walls_state[j]
-					if adjacent_block_state != null:
-						block_state.top_wall = adjacent_block_state.bottom_wall
-			
-			if j == num_columns - 1:
-				block_state.right_wall = true
-			
-			if i == num_lines - 1:
-				block_state.bottom_wall = true
-			
-			# Define open wall
-			var rn = randomNumberGenerator.randi_range(0, 3)
-			if rn == 0:
-				block_state.right_wall = true
-			elif rn == 1:
-				block_state.bottom_wall = true
-			
 			
 			# Set walls state
 			block.setup()
@@ -79,14 +102,16 @@ func _ready() -> void:
 			# Add block to container
 			add_child(block)
 			
-			# Add walls state to dictionary
-			var horizontal_walls_state :Dictionary = {}
-			if i in block_walls_state:
-				horizontal_walls_state = block_walls_state[i]
-			
-			horizontal_walls_state[j] = block_state
-			block_walls_state[i] = horizontal_walls_state
+			# Save walls state
+			block_states[i][j] = block_state
 
+func _random_open_wall() -> bool:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	# 0   = !(false)
+	# > 0 = !(true)
+	return !(rng.randi_range(0, 5))
 ## Defines the state of the walls of a block
 ## A wall can be enabled (closed) or disabled (opened)
 class BlockState: 
