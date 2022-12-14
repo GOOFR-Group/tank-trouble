@@ -46,23 +46,18 @@ func _ready() -> void:
 ##
 ## Rules:
 ## 1. All walls of the block of the happy path are open, except those that represent edges
-## 2. A block cannot move in the opposite direction of the previous step
 func _generate_happy_path(block_states :Array) -> Array:
 	var i :int = 0
 	var j :int = 0
-	var previousDirection := Vector2.ZERO
 	
 	while true:
 		# Declare possible directions to move next
 		var possible_directions :Array = [
-			# Vector2.LEFT, NOTE: given the current spawn point of the tanks, avoiding going left creates more diverse maps
+			# Vector2.LEFT, # NOTE: given the current spawn point of the tanks, avoiding going left creates more diverse maps
 			Vector2.UP,
 			Vector2.RIGHT,
 			Vector2.DOWN,
 		]
-		
-		# Remove opposite direction of the previous step (rule 2.)
-		possible_directions.erase(-previousDirection)
 		
 		# Declare walls state
 		var block_state = BlockState.new(block_color_happy_path, false, false, false, false) 
@@ -92,8 +87,8 @@ func _generate_happy_path(block_states :Array) -> Array:
 			break
 		
 		# Choose next block of the path
-		var nextDirection :Vector2 = _random_direction(possible_directions)
-		match nextDirection:
+		var next_direction :Vector2 = _random_direction(possible_directions)
+		match next_direction:
 			Vector2.LEFT:
 				j -= 1
 			Vector2.UP:
@@ -104,8 +99,6 @@ func _generate_happy_path(block_states :Array) -> Array:
 				i += 1
 			_:
 				break
-		
-		previousDirection = nextDirection
 	
 	return block_states
 
