@@ -13,7 +13,7 @@ export var offset = Vector2(70 ,70)
 onready var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
 
 func _ready() -> void:	
-	# Set up block states (every block starts with an empty state)
+	# Set up the initial block states (every block starts with an empty state)
 	var block_states :Array = []
 	for i in num_lines:
 		var column_block_states :Array = []
@@ -23,25 +23,59 @@ func _ready() -> void:
 		block_states.append(column_block_states)
 	
 	# Generate the happy path
-	# TODO
+	block_states = _generate_happy_path(block_states)
 	
-	# Generate the map and spawn the blocks
+	# Generate the rest of the map
+	block_states = _generate_map(block_states)
+	
+	# Spawn the blocks
+	_spawn_blocks(block_states)
+
+## Generates a happy path
+func _generate_happy_path(block_states :Array) -> Array:
+	return block_states
+	
+	var i :int = 0
+	var j :int = 0
+	while i < num_lines && j < num_columns:
+		continue
+		# Declare walls state
+		var block_state = BlockState.new(false, false, false, false) 
+		
+		# Check for edge limitations
+		if j == 0:
+			block_state.left_wall = true
+		
+		if i == 0:
+			block_state.top_wall = true
+		
+		if j == num_columns - 1:
+			block_state.right_wall = true
+		
+		if i == num_lines - 1:
+			block_state.bottom_wall = true
+		
+		# Save walls state
+		block_states[i][j] = block_state
+	
+	return block_states
+
+## Generates the game map respecting the following rules
+##
+## 1. A wall is automatically prevented from being opened when:
+## - It corresponds to an edge
+## - Its adjacent wall is not opened
+## 2. A wall might be open when:
+## - Its adjacent wall is opened
+func _generate_map(block_states :Array) -> Array:
 	for i in num_lines:
 		for j in num_columns:
-			# Avoid changing the happy path
+			# Avoid modifying already defined blocks
 			if block_states[i][j] != null:
 				continue
 			
 			# Declare walls state
 			var block_state = BlockState.new(false, false, false, false) 
-			
-			# Rules to generate walls
-			#
-			# 1. A wall is automatically prevented from being opened when:
-			# - It corresponds to an edge
-			# - Its adjacent wall is not opened
-			# 2. A wall might be open when:
-			# - Its adjacent wall is opened
 			
 			# Check for wall limitations (rule 1.)
 			if j == 0:
@@ -85,6 +119,15 @@ func _ready() -> void:
 			if block_state.bottom_wall == false:
 				block_state.bottom_wall = _random_open_wall()
 			
+			# Save walls state
+			block_states[i][j] = block_state
+	
+	return block_states
+
+## Spawns the blocks respecting their wall states
+func _spawn_blocks(block_states :Array) -> void:
+	for i in num_lines:
+		for j in num_columns:
 			# Instantiate block
 			var block = block_scene.instance()
 			
@@ -93,6 +136,8 @@ func _ready() -> void:
 			block.set_position(block_position)
 			
 			# Set walls state
+			var block_state :BlockState = block_states[i][j]
+			
 			block.setup()
 			block.enable_left_wall(block_state.left_wall)
 			block.enable_top_wall(block_state.top_wall)
@@ -101,9 +146,6 @@ func _ready() -> void:
 			
 			# Add block to container
 			add_child(block)
-			
-			# Save walls state
-			block_states[i][j] = block_state
 
 func _random_open_wall() -> bool:
 	var rng = RandomNumberGenerator.new()
@@ -112,6 +154,7 @@ func _random_open_wall() -> bool:
 	# 0   = !(false)
 	# > 0 = !(true)
 	return !(rng.randi_range(0, 5))
+
 ## Defines the state of the walls of a block
 ## A wall can be enabled (closed) or disabled (opened)
 class BlockState: 
