@@ -1,14 +1,16 @@
 extends Node
 
 signal game_over(playerkilled)
+signal debug_mode_changed(previous, new)
+
+var debug :bool setget set_debug_mode
 
 var is_game_over :bool
-var debug :bool
 
 func _ready() -> void:
-	is_game_over = false
-	debug = true
-
+	self.is_game_over = false
+	self.debug = false
+	
 func game_over(player_killed: String) -> void:
 	is_game_over = true
 	emit_signal("game_over", player_killed)
@@ -21,4 +23,8 @@ func restart_game() -> void:
 		push_error("Failed to restart the game.")
 
 func toggle_debug_mode() -> void:
-	debug = !debug
+	self.debug = !debug
+	
+func set_debug_mode(value :bool) -> void:
+	debug = value
+	emit_signal("debug_mode_changed", !debug, debug)
