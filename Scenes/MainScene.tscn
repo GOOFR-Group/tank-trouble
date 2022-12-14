@@ -23,12 +23,14 @@ position = Vector2( 20, 15 )
 
 [node name="Sprite" type="Sprite" parent="Map/Background"]
 scale = Vector2( 0.483, 565 )
-z_index = -1
+z_index = -2
 texture = SubResource( 3 )
 centered = false
 
 [node name="Walls" type="Node2D" parent="Map"]
 script = ExtResource( 5 )
+block_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+block_color_happy_path = Color( 0.639216, 0.639216, 0.639216, 1 )
 
 [node name="Player1Tank" parent="." instance=ExtResource( 1 )]
 position = Vector2( 965, 545 )
