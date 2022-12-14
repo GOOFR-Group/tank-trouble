@@ -28,6 +28,9 @@ func _ready():
 	_can_shoot = true
 
 func _process(__ :float):
+	if GameManager.is_game_over:
+		return
+	
 	# Shoot
 	if _input_shoot() && _can_shoot:
 		# Spawn bullet
@@ -85,4 +88,4 @@ func _on_killed() -> void:
 	queue_free()
 	
 	# Killing event
-	GameManager.gameOver(playerName)
+	GameManager.game_over(playerName)

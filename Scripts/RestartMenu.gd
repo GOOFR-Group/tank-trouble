@@ -2,16 +2,14 @@ extends CanvasLayer
 
 func _ready() -> void:
 	hide()
-	var error = GameManager.connect("gameOver", self, "gameOver")
+	var error = GameManager.connect("game_over", self, "game_over")
 	if error != OK:
-		push_error("RestartMenu failed to connect the gameOver signal.")
+		push_error("RestartMenu failed to connect the game_over signal.")
 
-func gameOver(playerkilled: String) -> void:
+func game_over(player_killed: String) -> void:
 	show()
-	$Background/Label.text = playerkilled + " is Dead!"
+	$Background/Label.text = player_killed + " is Dead!"
 	$AnimationPlayer.play("show")
 
 func _on_restart_button_down() -> void:
-	var error = get_tree().reload_current_scene()
-	if error != OK:
-		push_error("Failed to restart the game.")
+	GameManager.restart_game()
