@@ -9,6 +9,12 @@ export var num_columns :int = 14
 ## Space between blocks
 export var offset = Vector2(70 ,70)
 
+## Background color of the regular blocks
+export var block_color :Color
+
+## Background color of the happy path blocks
+export var block_color_happy_path :Color
+
 # Scenes
 onready var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
 
@@ -31,32 +37,75 @@ func _ready() -> void:
 	# Spawn the blocks
 	_spawn_blocks(block_states)
 
-## Generates a happy path
+## Generates a happy path from (0, 0) to (num_lines - 1, num_columns - 1)
+##
+## Algorithm:
+## 1. Start at (0, 0)
+## 2. While not reaching (num_lines - 1, num_columns - 1) choose the next block of the path
+## 3. To decide the next block of the path, "move" left, up, right or down from the current block
+##
+## Rules:
+## 1. All walls of the block of the happy path are open, except those that represent edges
+## 2. A block cannot move in the opposite direction of the previous step
 func _generate_happy_path(block_states :Array) -> Array:
-	return block_states
-	
 	var i :int = 0
 	var j :int = 0
-	while i < num_lines && j < num_columns:
-		continue
-		# Declare walls state
-		var block_state = BlockState.new(false, false, false, false) 
+	var previousDirection := Vector2.ZERO
+	
+	while true:
+		# Declare possible directions to move next
+		var possible_directions :Array = [
+			# Vector2.LEFT, NOTE: given the current spawn point of the tanks, avoiding going left creates more diverse maps
+			Vector2.UP,
+			Vector2.RIGHT,
+			Vector2.DOWN,
+		]
 		
-		# Check for edge limitations
+		# Remove opposite direction of the previous step (rule 2.)
+		possible_directions.erase(-previousDirection)
+		
+		# Declare walls state
+		var block_state = BlockState.new(block_color_happy_path, false, false, false, false) 
+		
+		# Check for edge limitations (rule 1.)
 		if j == 0:
+			possible_directions.erase(Vector2.LEFT)
 			block_state.left_wall = true
 		
 		if i == 0:
+			possible_directions.erase(Vector2.UP)
 			block_state.top_wall = true
 		
 		if j == num_columns - 1:
+			possible_directions.erase(Vector2.RIGHT)
 			block_state.right_wall = true
 		
 		if i == num_lines - 1:
+			possible_directions.erase(Vector2.DOWN)
 			block_state.bottom_wall = true
 		
 		# Save walls state
 		block_states[i][j] = block_state
+		
+		# Break out of the loop if the destination is reached
+		if i == num_lines - 1 && j == num_columns - 1:
+			break
+		
+		# Choose next block of the path
+		var nextDirection :Vector2 = _random_direction(possible_directions)
+		match nextDirection:
+			Vector2.LEFT:
+				j -= 1
+			Vector2.UP:
+				i -= 1
+			Vector2.RIGHT:
+				j += 1
+			Vector2.DOWN:
+				i += 1
+			_:
+				break
+		
+		previousDirection = nextDirection
 	
 	return block_states
 
@@ -75,7 +124,7 @@ func _generate_map(block_states :Array) -> Array:
 				continue
 			
 			# Declare walls state
-			var block_state = BlockState.new(false, false, false, false) 
+			var block_state = BlockState.new(block_color, false, false, false, false) 
 			
 			# Check for wall limitations (rule 1.)
 			if j == 0:
@@ -139,6 +188,7 @@ func _spawn_blocks(block_states :Array) -> void:
 			var block_state :BlockState = block_states[i][j]
 			
 			block.setup()
+			block.change_background_color(block_state.color)
 			block.enable_left_wall(block_state.left_wall)
 			block.enable_top_wall(block_state.top_wall)
 			block.enable_right_wall(block_state.right_wall)
@@ -147,27 +197,43 @@ func _spawn_blocks(block_states :Array) -> void:
 			# Add block to container
 			add_child(block)
 
+func _random_direction(possible_directions :Array) -> Vector2:
+	if possible_directions.empty():
+		return Vector2.ZERO
+	
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	
+	var index :int = rng.randi_range(0, possible_directions.size()-1)
+	var direction :Vector2 = possible_directions[index]
+	if direction == null:
+		return Vector2.ZERO
+	
+	return direction
+	
 func _random_open_wall() -> bool:
-	var rng = RandomNumberGenerator.new()
+	var rng := RandomNumberGenerator.new()
 	rng.randomize()
 	
 	# 0   = !(false)
 	# > 0 = !(true)
-	return !(rng.randi_range(0, 5))
+	return !(rng.randi_range(0, 3))
 
 ## Defines the state of the walls of a block
 ## A wall can be enabled (closed) or disabled (opened)
-class BlockState: 
+class BlockState:
+	var color :Color
 	var left_wall :bool
 	var top_wall :bool
 	var right_wall :bool
 	var bottom_wall :bool
 	
-	func _init(enable_left_wall :bool, enable_top_wall :bool, enable_right_wall :bool, enable_bottom_wall :bool):
+	func _init(background_color :Color, enable_left_wall :bool, enable_top_wall :bool, enable_right_wall :bool, enable_bottom_wall :bool):
+		self.color = background_color
 		self.left_wall = enable_left_wall
 		self.top_wall = enable_top_wall
 		self.right_wall = enable_right_wall
 		self.bottom_wall = enable_bottom_wall
 	
 	func _to_string() -> String:
-		return "{left_wall: %s, top_wall: %s, right_wall: %s, bottom_wall: %s}" %[left_wall, top_wall, right_wall, bottom_wall]
+		return "{color: %s, left_wall: %s, top_wall: %s, right_wall: %s, bottom_wall: %s}" %[color, left_wall, top_wall, right_wall, bottom_wall]
