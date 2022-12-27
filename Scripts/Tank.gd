@@ -23,6 +23,7 @@ onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
 # Node references
 onready var bullet_spawn_point :Position2D = $BulletSpawnPoint
 onready var bullet_timer :Timer = $BulletTimer
+onready var explosion_audio :AudioStreamPlayer = $ExplosionAudio
 
 func _ready():
 	_can_shoot = true
@@ -79,13 +80,27 @@ func _on_shoot_timeout():
 	_can_shoot = true
 
 func _on_killed() -> void:
+	# Killing event
+	GameManager.game_over(playerName)
+	
+	# Hide child nodes
+	_disable()
+	
 	# Spawn explosion
 	var explosion = explosion_scene.instance()
 	explosion.set_position(position)
 	main_scene.add_child(explosion)
 	
+	# Play explosion audio
+	explosion_audio.play()
+	yield(explosion_audio, "finished")
+	
 	# Destroy self
 	queue_free()
+
+func _disable():
+	hide()
 	
-	# Killing event
-	GameManager.game_over(playerName)
+	var collision_shape :CollisionShape2D = $Collision
+	if collision_shape != null:
+		collision_shape.disabled = true

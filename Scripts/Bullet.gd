@@ -1,10 +1,12 @@
 extends KinematicBody2D
 
 ## Speed of the bullet
-export var speed :int = 400 
+export var speed :int = 400
 
 ## Player tag
 export var player_tag :String = "player"
+
+onready var hit_audio :AudioStreamPlayer = $HitAudio
 
 func _physics_process(delta :float) -> void:
 	# Calculate forward vector
@@ -23,6 +25,8 @@ func _physics_process(delta :float) -> void:
 		# Update the rotation on collision
 		var direction = (-collision.normal).reflect(forward_vector)
 		rotation = direction.angle_to(Vector2.UP)
+		
+		hit_audio.play()
 
 func _on_lifetime_timeout():
 	queue_free()
