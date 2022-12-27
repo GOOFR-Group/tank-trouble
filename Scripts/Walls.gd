@@ -15,10 +15,14 @@ export var block_color :Color
 ## Background color of the happy path blocks
 export var block_color_happy_path :Color
 
+var rng := RandomNumberGenerator.new()
+
 # Scenes
 onready var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
 
-func _ready() -> void:	
+func _ready() -> void:
+	rng.randomize()
+	
 	# Set up the initial block states (every block starts with an empty state)
 	var block_states :Array = []
 	for i in num_lines:
@@ -194,9 +198,6 @@ func _random_direction(possible_directions :Array) -> Vector2:
 	if possible_directions.empty():
 		return Vector2.ZERO
 	
-	var rng := RandomNumberGenerator.new()
-	rng.randomize()
-	
 	var index :int = rng.randi_range(0, possible_directions.size()-1)
 	var direction :Vector2 = possible_directions[index]
 	if direction == null:
@@ -205,9 +206,6 @@ func _random_direction(possible_directions :Array) -> Vector2:
 	return direction
 	
 func _random_open_wall() -> bool:
-	var rng := RandomNumberGenerator.new()
-	rng.randomize()
-	
 	# 0   = !(false)
 	# > 0 = !(true)
 	return !(rng.randi_range(0, 3))
