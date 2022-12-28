@@ -3,6 +3,13 @@ extends KinematicBody2D
 # warning-ignore:unused_signal
 signal killed()
 
+# Wheel animations
+const WHEEL_ANIMATION_IDLE :String = "Idle"
+const WHEEL_ANIMATION_BOTH_FORWARD :String = "BothForward"
+const WHEEL_ANIMATION_BOTH_BACKWARDS :String = "BothBackwards"
+const WHEEL_ANIMATION_LEFT_FORWARD_RIGHT_BACKWARDS :String = "LeftForwardRightBackwards"
+const WHEEL_ANIMATION_LEFT_BACKWARDS_RIGHT_FORWARD :String = "LeftBackwardsRightForward"
+
 ## Player name
 export var playerName :String = "" 
 
@@ -21,12 +28,15 @@ onready var bullet_scene = preload("res://Prefabs/Player/Bullet.tscn")
 onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
 
 # Node references
+onready var animated_sprite :AnimatedSprite = $AnimatedSprite
 onready var bullet_spawn_point :Position2D = $BulletSpawnPoint
 onready var bullet_timer :Timer = $BulletTimer
 onready var explosion_audio :AudioStreamPlayer = $ExplosionAudio
 
 func _ready():
 	_can_shoot = true
+	
+	_change_wheel_animation(WHEEL_ANIMATION_IDLE)
 
 func _process(__ :float):
 	if GameManager.is_game_over:
@@ -54,6 +64,24 @@ func _physics_process(delta :float):
 	var move_direction = _input_move()
 	var velocity = move_direction * forward_vector * speed
 	velocity = move_and_slide(velocity)
+	
+	# Player is rotating left
+	if rotation_direction == -1:
+		_change_wheel_animation(WHEEL_ANIMATION_LEFT_BACKWARDS_RIGHT_FORWARD)
+	# Player is rotating right
+	elif rotation_direction == 1:
+		_change_wheel_animation(WHEEL_ANIMATION_LEFT_FORWARD_RIGHT_BACKWARDS)
+	# Player is not rotating
+	else:
+		# Player is moving backwards
+		if move_direction == -1:
+			_change_wheel_animation(WHEEL_ANIMATION_BOTH_BACKWARDS)
+		# Player is moving forward
+		elif move_direction == 1:
+			_change_wheel_animation(WHEEL_ANIMATION_BOTH_FORWARD)
+		# Player is moving backwards
+		else:
+			_change_wheel_animation(WHEEL_ANIMATION_IDLE)
 
 ## Returns the direction of the rotation
 ## 0  = no rotation
@@ -75,7 +103,17 @@ func _input_move() -> int:
 ## This function must be override
 func _input_shoot() -> bool:
 	return false
+
+func _change_wheel_animation(animation :String) -> void:
+	animated_sprite.play(animation)
+
+func _disable() -> void:
+	hide()
 	
+	var collision_shape :CollisionShape2D = $Collision
+	if collision_shape != null:
+		collision_shape.disabled = true
+
 func _on_shoot_timeout():
 	_can_shoot = true
 
@@ -97,10 +135,3 @@ func _on_killed() -> void:
 	
 	# Destroy self
 	queue_free()
-
-func _disable():
-	hide()
-	
-	var collision_shape :CollisionShape2D = $Collision
-	if collision_shape != null:
-		collision_shape.disabled = true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tank.png-6b814efe52363d0f402882e8d075539d.stex"
+path="res://.import/LeftForwardRightBackwards3.png-371729e8cb816aedc8342c7b7a9c1496.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Tank.png"
-dest_files=[ "res://.import/Tank.png-6b814efe52363d0f402882e8d075539d.stex" ]
+source_file="res://Assets/Images/Tanks/Wheels/Left Forward Right Backwards/LeftForwardRightBackwards3.png"
+dest_files=[ "res://.import/LeftForwardRightBackwards3.png-371729e8cb816aedc8342c7b7a9c1496.stex" ]
 
 [params]
 
