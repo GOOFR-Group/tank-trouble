@@ -79,7 +79,7 @@ func _physics_process(delta :float):
 		# Player is moving forward
 		elif move_direction == 1:
 			_change_wheel_animation(WHEEL_ANIMATION_BOTH_FORWARD)
-		# Player is moving backwards
+		# Player is not moving
 		else:
 			_change_wheel_animation(WHEEL_ANIMATION_IDLE)
 
