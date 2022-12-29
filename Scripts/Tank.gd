@@ -55,13 +55,19 @@ func _process(__ :float):
 		_can_shoot = false
 
 func _physics_process(delta :float):
-	# Rotate
+	# Get inputs
 	var rotation_direction = _input_rotate()
+	var move_direction = _input_move()
+	
+	# Rotate
+	if move_direction == -1:
+		# Reverse the rotation direction when moving backwards
+		rotation_direction = -rotation_direction
+	
 	rotation += rotation_direction * rotation_speed * delta
 	
 	# Move
 	var forward_vector := Vector2.UP.rotated(rotation)
-	var move_direction = _input_move()
 	var velocity = move_direction * forward_vector * speed
 	velocity = move_and_slide(velocity)
 	
