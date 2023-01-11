@@ -6,11 +6,7 @@
 
 [node name="Player2Tank" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-rotate_left_input = "p2_rotate_left"
-rotate_righ_input = "p2_rotate_right"
-move_backward_input = "p2_move_backwards"
-move_forward_input = "p2_move_forward"
-shoot_input = "p2_shoot"
+input_code = "p2"
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
