@@ -13,5 +13,9 @@ func game_over(player_killed: String) -> void:
 	$Background/Label.text = player_killed + " is Dead!"
 	$AnimationPlayer.play("show")
 
-func _on_restart_button_down() -> void:
+func _on_restart_button_pressed() -> void:
 	GameManager.restart_game()
+
+func _on_exit_button_pressed() -> void:
+	GameManager.is_game_over = false
+	get_tree().change_scene("res://UI/Menu.tscn")
