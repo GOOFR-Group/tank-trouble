@@ -6,22 +6,10 @@ The Tank Trouble
 
 ## Inputs
 
-### Player 1
-
-| Key           | Description    |
-| ------------- | -------------- |
-| `arrow up`    | move forward   |
-| `arrow down`  | move backwards |
-| `arrow left`  | rotate left    |
-| `arrow right` | rotate right   |
-| `space`       | shoot bullet   |
-
-### Player 2
-
-| Key | Description    |
-| --- | -------------- |
-| `w` | move forward   |
-| `s` | move backwards |
-| `a` | rotate left    |
-| `d` | rotate right   |
-| `q` | shoot bullet   |
+| Movement       | Player 1      | Player 2 | Player 3 | Player 4 |
+| -------------- | ------------- | -------- | -------- | -------- |
+| Move Forward   | `arrow up`    | `W`      | `I`      | `Kp 8`   |
+| Move Backwards | `arrow down`  | `S`      | `K`      | `Kp 5`   |
+| Rotate Left    | `arrow left`  | `A`      | `J`      | `Kp 4`   |
+| Rotate Right   | `arrow right` | `D`      | `L`      | `Kp 6`   |
+| Shoot Bullet   | `space`       | `Q`      | `U`      | `Kp 7`   |
