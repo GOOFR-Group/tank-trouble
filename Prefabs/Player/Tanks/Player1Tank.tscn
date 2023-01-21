@@ -6,3 +6,6 @@
 [node name="Player1Tank" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 input_code = "p1"
+
+[node name="Sprite" parent="." index="1"]
+modulate = Color( 0.207843, 0.278431, 0.619608, 1 )
