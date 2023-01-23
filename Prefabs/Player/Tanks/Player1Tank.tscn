@@ -5,8 +5,7 @@
 
 [node name="Player1Tank" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-rotate_left_input = "p1_rotate_left"
-rotate_righ_input = "p1_rotate_right"
-move_backward_input = "p1_move_backwards"
-move_forward_input = "p1_move_forward"
-shoot_input = "p1_shoot"
+input_code = "p1"
+
+[node name="Sprite" parent="." index="1"]
+modulate = Color( 0.207843, 0.278431, 0.619608, 1 )

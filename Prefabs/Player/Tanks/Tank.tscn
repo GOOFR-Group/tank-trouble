@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/Images/Tanks/Wheels/Both Forward/BothForward2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Images/Tanks/Wheels/Left Backwards Right Forward/LeftBackwardsRightForward2.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Images/Tanks/Wheels/Idle/Idle.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Images/Tanks/Base/Tank1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/Tanks/Base/Tank.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Images/Tanks/Wheels/Left Forward Right Backwards/LeftForwardRightBackwards1.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Images/Tanks/Wheels/Left Backwards Right Forward/LeftBackwardsRightForward3.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Images/Tanks/Wheels/Both Backwards/BothBackwards2.png" type="Texture" id=11]
@@ -69,7 +69,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -20 )
 
 [node name="BulletTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.5
 one_shot = true
 autostart = true
 
