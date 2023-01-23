@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Images/Tanks/Base/Tank1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/Tanks/Base/Tank.png" type="Texture" id=1]
 [ext_resource path="res://UI/PlayerUI.gd" type="Script" id=2]
 
 [node name="PlayerUI" type="VBoxContainer"]

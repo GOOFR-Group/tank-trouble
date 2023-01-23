@@ -11,7 +11,7 @@ const WHEEL_ANIMATION_LEFT_FORWARD_RIGHT_BACKWARDS :String = "LeftForwardRightBa
 const WHEEL_ANIMATION_LEFT_BACKWARDS_RIGHT_FORWARD :String = "LeftBackwardsRightForward"
 
 ## Player name
-export var playerName :String = "" 
+export var playerName :String = ""
 
 ## Speed to move the tank forward/backwards
 export var speed :float = 150 
