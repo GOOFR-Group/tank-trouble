@@ -38,7 +38,7 @@ valign = 1
 
 [node name="NameInput" type="LineEdit" parent="."]
 visible = false
-margin_top = 120.0
+margin_top = 132.0
 margin_right = 366.0
 margin_bottom = 206.0
 size_flags_horizontal = 3
@@ -48,5 +48,5 @@ align = 1
 clear_button_enabled = true
 placeholder_text = "Player 1 Name"
 __meta__ = {
-"_editor_description_": "In the future refactor to player change the player name"
+"_editor_description_": "TODO: In the future refactor to player change the player name"
 }

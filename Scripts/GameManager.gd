@@ -3,6 +3,20 @@ extends Node
 signal game_over(playerkilled)
 signal debug_mode_changed(previous, new)
 
+class Player:
+	var name: String
+	var color: Color
+	var input_code: String
+	var isDead: bool
+	var score: int
+	
+	func _init(name: String, color: Color, input_code: String) -> void:
+		self.name = name
+		self.color = color
+		self.input_code = input_code
+		self.isDead = false
+		self.score = 0
+
 var debug :bool setget set_debug_mode
 
 var is_game_over :bool
@@ -17,7 +31,7 @@ var COLOR_SETS :PoolColorArray = [
 	Color(1,0,1,1), # Magenta
 	Color(1,1,1,1), # White
 ]
-var players_colors :PoolColorArray = []
+var players = []
 
 func _ready() -> void:
 	self.is_game_over = false
@@ -41,15 +55,20 @@ func set_debug_mode(value :bool) -> void:
 	debug = value
 	emit_signal("debug_mode_changed", !debug, debug)
 	
-func generate_player_colors(number_of_players = 2) -> PoolColorArray:
-	players_colors = []
+func generate_player(number_of_players = 2):
+	players = []
+	var used_colors = []
 	
 	for i in range(number_of_players):
 		var color = COLOR_SETS[randi() % COLOR_SETS.size()]
 		
-		while color in players_colors:
+		while color in used_colors:
 			color = COLOR_SETS[randi() % COLOR_SETS.size()]
-			
-		players_colors.append(color)
+		used_colors.append(color)
 		
-	return players_colors
+		var name = "Player " + str(i + 1)
+		var input_code = "p" + str(i + 1)
+		var new_player = Player.new(name, color, input_code)
+		players.append(new_player)
+		
+	return players
