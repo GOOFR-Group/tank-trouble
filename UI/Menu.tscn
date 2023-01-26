@@ -83,6 +83,7 @@ custom_fonts/font = SubResource( 3 )
 text = "Exit"
 
 [node name="PlayerSelection" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [connection signal="pressed" from="ControlButtons/Play" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ControlButtons/HBoxContainer/DebugBTN" to="." method="_on_debug_button_pressed"]

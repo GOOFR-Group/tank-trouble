@@ -2,7 +2,7 @@ extends Node2D
 
 onready var Player: PackedScene = preload("res://Prefabs/Player/Tanks/Player.tscn")
 
-const OFFSET = Vector2(70 ,70)
+const OFFSET = Vector2(70, 70)
 
 func _ready() -> void:
 	for i in range(GameManager.players.size()):

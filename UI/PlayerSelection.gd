@@ -1,5 +1,6 @@
 extends ColorRect
 
+## This it's just the text to show the player in the label
 const CONTROLS = [
 	"Up/Left/Down/Right/Space",
 	"W/A/S/D/Q",

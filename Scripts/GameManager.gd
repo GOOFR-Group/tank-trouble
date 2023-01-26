@@ -31,6 +31,8 @@ var COLOR_SETS :PoolColorArray = [
 	Color(1,0,1,1), # Magenta
 	Color(1,1,1,1), # White
 ]
+
+## List of players
 var players = []
 
 func _ready() -> void:
@@ -54,7 +56,8 @@ func toggle_debug_mode() -> void:
 func set_debug_mode(value :bool) -> void:
 	debug = value
 	emit_signal("debug_mode_changed", !debug, debug)
-	
+
+## This function will generate the given number of players with non-repeated random colors
 func generate_player(number_of_players = 2):
 	players = []
 	var used_colors = []
