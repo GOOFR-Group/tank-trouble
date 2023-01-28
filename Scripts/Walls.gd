@@ -52,13 +52,13 @@ func _ready() -> void:
 ##
 ## Rules:
 ## 1. All walls of the block of the happy path are open, except those that represent edges
-func _generate_happy_path(num_lines :int, num_columns :int, block_states :Array, spawn_points :Array) -> Array:
+func _generate_happy_path(lines :int, columns :int, block_states :Array, spawn_points :Array) -> Array:
 	# There needs to be more than 1 point to generate a path
 	if len(spawn_points) < 2:
 		return block_states
 	
 	# Initialize the graph of blocks
-	var graph :BlockGraph = BlockGraph.new(num_lines, num_columns)
+	var graph :BlockGraph = BlockGraph.new(lines, columns)
 	
 	# Get the initial block of the path
 	var from_point :Array = spawn_points[0]
@@ -75,20 +75,20 @@ func _generate_happy_path(num_lines :int, num_columns :int, block_states :Array,
 			var block_state = BlockState.new(block_color_happy_path, false, false, false, false) 
 			
 			# Check for edge limitations (rule 1.)
-			if block_vertex.j == 0:
+			if block_vertex.column_index == 0:
 				block_state.left_wall = true
 			
-			if block_vertex.i == 0:
+			if block_vertex.line_index == 0:
 				block_state.top_wall = true
 			
-			if block_vertex.j == num_columns - 1:
+			if block_vertex.column_index == num_columns - 1:
 				block_state.right_wall = true
 			
-			if block_vertex.i == num_lines - 1:
+			if block_vertex.line_index == num_lines - 1:
 				block_state.bottom_wall = true
 			
 			# Save walls state
-			block_states[block_vertex.i][block_vertex.j] = block_state
+			block_states[block_vertex.line_index][block_vertex.column_index] = block_state
 		
 		# Make the current target block be the next initial block of the path
 		from_point = to_point
@@ -213,14 +213,14 @@ class BlockGraph:
 	var num_columns :int
 	var vertices :Array
 	
-	func _init(num_lines :int, num_columns :int) -> void:
-		self.num_lines = num_lines
-		self.num_columns = num_columns
+	func _init(line_count :int, columns_count :int) -> void:
+		self.num_lines = line_count
+		self.num_columns = columns_count
 		
 		# Map each vertex of the graph to a matrix position
 		vertices.resize(num_lines)
 		for i in num_lines:
-			var columns :Array
+			var columns :Array = []
 			columns.resize(num_columns)
 			
 			for j in num_columns:
@@ -255,8 +255,8 @@ class BlockGraph:
 		if fromI < 0 || fromI >= num_lines || fromJ < 0 || fromJ >= num_columns:
 			return []
 		
-		var paths :Array
-		var searched_vertices :Array
+		var paths :Array = []
+		var searched_vertices :Array = []
 		
 		# Append the root of the path
 		var root :BlockGraphVertex = vertices[fromI][fromJ] 
@@ -266,7 +266,7 @@ class BlockGraph:
 		# Perform the BFS
 		var target_reached :bool = false
 		while true:
-			var next_paths :Array
+			var next_paths :Array = []
 			
 			for i in len(paths):
 				var path :Array = paths[i]
@@ -284,7 +284,7 @@ class BlockGraph:
 						continue
 					
 					# Flag when the target is reached 
-					if vertex_neighbour.i == toI && vertex_neighbour.j == toJ:
+					if vertex_neighbour.line_index == toI && vertex_neighbour.column_index == toJ:
 						target_reached = true
 					
 					# Append the new path
@@ -313,7 +313,7 @@ class BlockGraph:
 			
 			for j in len(path):
 				var vertex :BlockGraphVertex = path[j]
-				if vertex.i == toI && vertex.j == toJ:
+				if vertex.line_index == toI && vertex.column_index == toJ:
 					return path
 		
 		# Return an empty path if the target vertex is not found
@@ -322,16 +322,16 @@ class BlockGraph:
 ## Defines a vertex of the block graph
 class BlockGraphVertex:
 	# Defines the line index of the matrix 
-	var i :int
+	var line_index :int
 	# Defines the column index of the matrix
-	var j :int
+	var column_index :int
 	
 	# Defines the adjacent vertices of this element
 	var neighbours :Array
 
 	func _init(i :int, j :int) -> void:
-		self.i = i
-		self.j = j
+		self.line_index = i
+		self.column_index = j
 	
 	func _add_neighbour(neighbour :BlockGraphVertex) -> void:
 		self.neighbours.append(neighbour)
