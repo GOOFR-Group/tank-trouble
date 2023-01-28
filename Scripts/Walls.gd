@@ -39,7 +39,7 @@ func _ready() -> void:
 		block_states.append(column_block_states)
 	
 	# Generate the happy path
-	block_states = _generate_happy_path(num_lines, num_columns, block_states, spawn_points)
+	block_states = _generate_happy_path(block_states, spawn_points)
 	
 	# Generate the rest of the map
 	block_states = _generate_map(block_states)
@@ -52,13 +52,13 @@ func _ready() -> void:
 ##
 ## Rules:
 ## 1. All walls of the block of the happy path are open, except those that represent edges
-func _generate_happy_path(lines :int, columns :int, block_states :Array, spawn_points :Array) -> Array:
+func _generate_happy_path(block_states :Array, spawn_points :Array) -> Array:
 	# There needs to be more than 1 point to generate a path
 	if len(spawn_points) < 2:
 		return block_states
 	
 	# Initialize the graph of blocks
-	var graph :BlockGraph = BlockGraph.new(lines, columns)
+	var graph :BlockGraph = BlockGraph.new(num_lines, num_columns)
 	
 	# Get the initial block of the path
 	var from_point :Array = spawn_points[0]
