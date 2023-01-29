@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Images/Tanks/Base/Tank.png" type="Texture" id=1]
+[ext_resource path="res://UI/PlayerUI.gd" type="Script" id=2]
+
+[node name="PlayerUI" type="VBoxContainer"]
+margin_right = 366.0
+margin_bottom = 206.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+script = ExtResource( 2 )
+
+[node name="Tank" type="TextureRect" parent="."]
+margin_right = 366.0
+margin_bottom = 158.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+stretch_mode = 6
+
+[node name="Controls" type="Label" parent="."]
+margin_top = 168.0
+margin_right = 366.0
+margin_bottom = 182.0
+text = "W/A/S/D/Q"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Name" type="Label" parent="."]
+margin_top = 192.0
+margin_right = 366.0
+margin_bottom = 206.0
+text = "Player 1"
+align = 1
+valign = 1
+
+[node name="NameInput" type="LineEdit" parent="."]
+visible = false
+margin_top = 132.0
+margin_right = 366.0
+margin_bottom = 206.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Player 1"
+align = 1
+clear_button_enabled = true
+placeholder_text = "Player 1 Name"
+__meta__ = {
+"_editor_description_": "TODO: In the future refactor to player change the player name"
+}

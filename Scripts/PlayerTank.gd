@@ -1,12 +1,20 @@
 extends "res://Scripts/Tank.gd"
 
-export var input_code: String
+var left: String
+var right: String
+var backwards: String
+var forward: String
+var shoot: String
 
-onready var left = input_code + "_rotate_left"
-onready var right = input_code + "_rotate_right"
-onready var backwards = input_code + "_move_backwards"
-onready var forward = input_code + "_move_forward"
-onready var shoot = input_code + "_shoot"
+func start(name: String, color: Color, input_code: String) -> void:
+	playerName = name
+	$Sprite.modulate = color
+	
+	left = input_code + "_rotate_left"
+	right = input_code + "_rotate_right"
+	backwards = input_code + "_move_backwards"
+	forward = input_code + "_move_forward"
+	shoot = input_code + "_shoot"
 
 func _input_rotate() -> int:
 	return int(Input.get_axis(left, right))
