@@ -1,15 +1,22 @@
 extends Node2D
 
-onready var Player: PackedScene = preload("res://Prefabs/Player/Tanks/Player.tscn")
+const INITIAL_SPAWN_POSITION = Vector2(60, 55)
+const SPAWN_OFFSET = Vector2(70, 70)
 
-const OFFSET = Vector2(70, 70)
+# Scenes
+onready var player_scene: PackedScene = preload("res://Prefabs/Player/Tanks/Player.tscn")
 
 func _ready() -> void:
-	for i in range(GameManager.players.size()):
-		var p = GameManager.players[i]
-		var new_player = Player.instance()
+	# Spawn players
+	for i in len(GameManager.players):
+		var player_info :Player.Info = GameManager.players[i]
+		var player = player_scene.instance()
 		
-		new_player.call_deferred("start", p.name, p.color, p.input_code)
-		new_player.position = Vector2(OFFSET.x*(i+1), OFFSET.y*(i+1))
+		var spawn_point :Player.SpawnPoint = player_info.spawn_point 
+		var line_index :int = spawn_point.line_index
+		var column_index :int = spawn_point.column_index
 		
-		add_child(new_player)
+		player.position = INITIAL_SPAWN_POSITION + Vector2(SPAWN_OFFSET.x * column_index, SPAWN_OFFSET.y * line_index)
+		player.call_deferred("start", player_info.name, player_info.color, player_info.input_code)
+		
+		add_child(player)

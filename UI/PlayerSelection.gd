@@ -14,6 +14,7 @@ onready var TanksGrid: GridContainer = $TanksGrid
 
 func _ready() -> void:
 	hide()
+	
 	_show_players(2, 2)
 
 func _on_back_button_pressed() -> void:
@@ -34,12 +35,17 @@ func _on_4_players_button_pressed() -> void:
 	_show_players(4, 2)
 
 func _show_players(num_players: int, num_columns: int) -> void:
+	# (Re)generate players
 	GameManager.generate_players(num_players)
+	
+	# Update the number of columns of the grid
 	TanksGrid.columns = num_columns
 	
+	# Remove previous tank representations from the UI 
 	for child in TanksGrid.get_children():
 		TanksGrid.remove_child(child)
 	
+	# Show new tank representations in the UI
 	for i in range(GameManager.players.size()):
 		var player = GameManager.players[i]
 		var controls = CONTROLS[i]
