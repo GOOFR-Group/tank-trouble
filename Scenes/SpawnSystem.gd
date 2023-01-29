@@ -7,9 +7,20 @@ const SPAWN_OFFSET = Vector2(70, 70)
 onready var player_scene: PackedScene = preload("res://Prefabs/Player/Tanks/Player.tscn")
 
 func _ready() -> void:
+	# Randomize spawn points
+	var spawn_points :Array = []
+	for i in GameManager.MAP_NUM_LINES:
+		for j in GameManager.MAP_NUM_COLUMNS:
+			var point := Player.SpawnPoint.new(i, j) 
+			spawn_points.append(point)
+	
+	spawn_points.shuffle()
+	
 	# Spawn players
 	for i in len(GameManager.players):
 		var player_info :Player.Info = GameManager.players[i]
+		player_info.spawn_point = spawn_points[i]
+		
 		var player = player_scene.instance()
 		
 		var spawn_point :Player.SpawnPoint = player_info.spawn_point 

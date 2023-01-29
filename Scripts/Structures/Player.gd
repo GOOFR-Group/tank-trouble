@@ -14,16 +14,16 @@ class Info:
 	var name: String
 	var color: Color
 	var input_code: String
-	var spawn_point: SpawnPoint
 	
+	var spawn_point: SpawnPoint
 	var score: int
 	var is_dead: bool
 	
-	func _init(name: String, color: Color, input_code: String, spawn_point) -> void:
+	func _init(name: String, color: Color, input_code: String) -> void:
 		self.name = name
 		self.color = color
 		self.input_code = input_code
-		self.spawn_point = spawn_point
 		
+		self.spawn_point = SpawnPoint.new(0, 0)
 		self.score = 0
 		self.is_dead = false

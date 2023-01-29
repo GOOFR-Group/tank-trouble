@@ -17,6 +17,8 @@ var is_game_over :bool
 var players :Array = []
 
 func _ready() -> void:
+	randomize()
+	
 	self.is_game_over = false
 	self.debug = false
 
@@ -43,14 +45,6 @@ func set_debug_mode(value :bool) -> void:
 func generate_players(number_of_players) -> void:
 	players = []
 	
-	var spawn_points :Array = []
-	for i in MAP_NUM_LINES:
-		for j in MAP_NUM_COLUMNS:
-			var point := Player.SpawnPoint.new(i, j) 
-			spawn_points.append(point)
-	
-	spawn_points.shuffle()
-	
 	var color_hue_slice: float = 1.0 / number_of_players
 	for i in number_of_players:
 		var color_hue_from: float = color_hue_slice * i
@@ -60,7 +54,6 @@ func generate_players(number_of_players) -> void:
 		var color: Color = Color.from_hsv(color_hue, 0.6, 0.6, 1)
 		var name: String = "Player " + str(i + 1)
 		var input_code: String = "p" + str(i + 1)
-		var spawn_point: Player.SpawnPoint = spawn_points[i]
 		
-		var new_player = Player.Info.new(name, color, input_code, spawn_point)
+		var new_player = Player.Info.new(name, color, input_code)
 		players.append(new_player)
