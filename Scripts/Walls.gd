@@ -23,6 +23,12 @@ onready var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
 func _ready() -> void:
 	rng.randomize()
 	
+	# TODO: Randomize this spawn points.
+	var spawn_points :Array = [
+		[0, 0],
+		[num_lines - 1, num_columns - 1]
+	]
+	
 	# Set up the initial block states (every block starts with an empty state)
 	var block_states :Array = []
 	for i in num_lines:
@@ -33,7 +39,7 @@ func _ready() -> void:
 		block_states.append(column_block_states)
 	
 	# Generate the happy path
-	block_states = _generate_happy_path(block_states)
+	block_states = _generate_happy_path(block_states, spawn_points)
 	
 	# Generate the rest of the map
 	block_states = _generate_map(block_states)
@@ -41,68 +47,51 @@ func _ready() -> void:
 	# Spawn the blocks
 	_spawn_blocks(block_states)
 
-## Generates a happy path from (0, 0) to (num_lines - 1, num_columns - 1)
-##
-## Algorithm:
-## 1. Start at (0, 0)
-## 2. While not reaching (num_lines - 1, num_columns - 1) choose the next block of the path
-## 3. To decide the next block of the path, "move" left, up, right or down from the current block
+## Generates a happy path that travels all the given spawn points.
+## The path is generated using the graph (theory) search algorithm breadth-first search.
 ##
 ## Rules:
 ## 1. All walls of the block of the happy path are open, except those that represent edges
-func _generate_happy_path(block_states :Array) -> Array:
-	var i :int = 0
-	var j :int = 0
+func _generate_happy_path(block_states :Array, spawn_points :Array) -> Array:
+	# There needs to be more than 1 point to generate a path
+	if len(spawn_points) < 2:
+		return block_states
 	
-	while true:
-		# Declare possible directions to move next
-		var possible_directions :Array = [
-			# Vector2.LEFT, # NOTE: given the current spawn point of the tanks, avoiding going left creates more diverse maps
-			Vector2.UP,
-			Vector2.RIGHT,
-			Vector2.DOWN,
-		]
+	# Initialize the graph of blocks
+	var graph :BlockGraph = BlockGraph.new(num_lines, num_columns)
+	
+	# Get the initial block of the path
+	var from_point :Array = spawn_points[0]
+	for i in range(1, spawn_points.size()):
+		# Get the target block of the path
+		var to_point :Array = spawn_points[i]
 		
-		# Declare walls state
-		var block_state = BlockState.new(block_color_happy_path, false, false, false, false) 
+		# Search a path between the two spawn points
+		var path :Array = graph._bfs_path(from_point[0], from_point[1], to_point[0], to_point[1])
+		for j in len(path):
+			var block_vertex :BlockGraphVertex = path[j]
+			
+			# Declare walls state
+			var block_state = BlockState.new(block_color_happy_path, false, false, false, false) 
+			
+			# Check for edge limitations (rule 1.)
+			if block_vertex.column_index == 0:
+				block_state.left_wall = true
+			
+			if block_vertex.line_index == 0:
+				block_state.top_wall = true
+			
+			if block_vertex.column_index == num_columns - 1:
+				block_state.right_wall = true
+			
+			if block_vertex.line_index == num_lines - 1:
+				block_state.bottom_wall = true
+			
+			# Save walls state
+			block_states[block_vertex.line_index][block_vertex.column_index] = block_state
 		
-		# Check for edge limitations (rule 1.)
-		if j == 0:
-			possible_directions.erase(Vector2.LEFT)
-			block_state.left_wall = true
-		
-		if i == 0:
-			possible_directions.erase(Vector2.UP)
-			block_state.top_wall = true
-		
-		if j == num_columns - 1:
-			possible_directions.erase(Vector2.RIGHT)
-			block_state.right_wall = true
-		
-		if i == num_lines - 1:
-			possible_directions.erase(Vector2.DOWN)
-			block_state.bottom_wall = true
-		
-		# Save walls state
-		block_states[i][j] = block_state
-		
-		# Break out of the loop if the destination is reached
-		if i == num_lines - 1 && j == num_columns - 1:
-			break
-		
-		# Choose next block of the path
-		var next_direction :Vector2 = _random_direction(possible_directions)
-		match next_direction:
-			Vector2.LEFT:
-				j -= 1
-			Vector2.UP:
-				i -= 1
-			Vector2.RIGHT:
-				j += 1
-			Vector2.DOWN:
-				i += 1
-			_:
-				break
+		# Make the current target block be the next initial block of the path
+		from_point = to_point
 	
 	return block_states
 
@@ -194,17 +183,6 @@ func _spawn_blocks(block_states :Array) -> void:
 			# Add block to container
 			add_child(block)
 
-func _random_direction(possible_directions :Array) -> Vector2:
-	if possible_directions.empty():
-		return Vector2.ZERO
-	
-	var index :int = rng.randi_range(0, possible_directions.size()-1)
-	var direction :Vector2 = possible_directions[index]
-	if direction == null:
-		return Vector2.ZERO
-	
-	return direction
-	
 func _random_open_wall() -> bool:
 	# 0   = !(false)
 	# > 0 = !(true)
@@ -228,3 +206,132 @@ class BlockState:
 	
 	func _to_string() -> String:
 		return "{color: %s, left_wall: %s, top_wall: %s, right_wall: %s, bottom_wall: %s}" %[color, left_wall, top_wall, right_wall, bottom_wall]
+
+## Defines a graph where each vertex represents an element (i, j) of a matrix
+class BlockGraph:
+	var num_lines :int
+	var num_columns :int
+	var vertices :Array
+	
+	func _init(line_count :int, columns_count :int) -> void:
+		self.num_lines = line_count
+		self.num_columns = columns_count
+		
+		# Map each vertex of the graph to a matrix position
+		vertices.resize(num_lines)
+		for i in num_lines:
+			var columns :Array = []
+			columns.resize(num_columns)
+			
+			for j in num_columns:
+				columns[j] = BlockGraphVertex.new(i, j)
+				
+			vertices[i] = columns
+		
+		# Populate the neighbours of the vertices
+		for i in num_lines:
+			for j in num_columns:
+				var vertex :BlockGraphVertex = vertices[i][j]
+				
+				# Left neighbour
+				if j - 1 >= 0:
+					vertex._add_neighbour(vertices[i][j - 1])
+					
+				# Up neighbour
+				if i - 1 >= 0:
+					vertex._add_neighbour(vertices[i - 1][j])
+				
+				# Right neighbour
+				if j + 1 <= num_columns - 1:
+					vertex._add_neighbour(vertices[i][j + 1])
+				
+				# Down neighbour
+				if i + 1 <= num_lines - 1:
+					vertex._add_neighbour(vertices[i + 1][j])
+	
+	# Returns a path of GraphVertex from the vertex (fromI, fromJ) to (toI, toJ) using the breadth-first search algorithm
+	func _bfs_path(fromI :int, fromJ :int, toI :int, toJ :int) -> Array:
+		# Return an empty path when the initial vertex is invalid
+		if fromI < 0 || fromI >= num_lines || fromJ < 0 || fromJ >= num_columns:
+			return []
+		
+		var paths :Array = []
+		var searched_vertices :Array = []
+		
+		# Append the root of the path
+		var root :BlockGraphVertex = vertices[fromI][fromJ] 
+		paths.append([root])
+		searched_vertices.append(root)
+		
+		# Perform the BFS
+		var target_reached :bool = false
+		while true:
+			var next_paths :Array = []
+			
+			for i in len(paths):
+				var path :Array = paths[i]
+				var vertex :BlockGraphVertex = path.back()
+				var neighbours :Array = vertex.neighbours.duplicate()
+				
+				# Shuffle the neighbours in order to get different paths each time the algorithm runs
+				neighbours.shuffle()
+				
+				for j in len(neighbours):
+					var vertex_neighbour :BlockGraphVertex = neighbours[j]
+					
+					# Ignore already found vertices
+					if searched_vertices.has(vertex_neighbour):
+						continue
+					
+					# Flag when the target is reached 
+					if vertex_neighbour.line_index == toI && vertex_neighbour.column_index == toJ:
+						target_reached = true
+					
+					# Append the new path
+					var new_path :Array = path.duplicate()
+					new_path.append(vertex_neighbour)
+					
+					next_paths.append(new_path)
+					
+					# Flag the new vertex as searched
+					searched_vertices.append(vertex_neighbour)
+			
+			# Update the current paths 
+			paths = next_paths
+		
+			# Stop searching when the target is reached
+			if target_reached:
+				break
+			
+			# Stop searching when every vertex of the graph has already been visited
+			if len(searched_vertices) == len(vertices):
+				break
+		
+		# Find the path that contains the target vertex
+		for i in len(paths):
+			var path :Array = paths[i]
+			
+			for j in len(path):
+				var vertex :BlockGraphVertex = path[j]
+				if vertex.line_index == toI && vertex.column_index == toJ:
+					return path
+		
+		# Return an empty path if the target vertex is not found
+		return []
+		
+## Defines a vertex of the block graph
+class BlockGraphVertex:
+	# Defines the line index of the matrix 
+	var line_index :int
+	# Defines the column index of the matrix
+	var column_index :int
+	
+	# Defines the adjacent vertices of this element
+	var neighbours :Array
+
+	func _init(i :int, j :int) -> void:
+		self.line_index = i
+		self.column_index = j
+	
+	func _add_neighbour(neighbour :BlockGraphVertex) -> void:
+		self.neighbours.append(neighbour)
