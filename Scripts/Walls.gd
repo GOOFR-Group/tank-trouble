@@ -293,7 +293,6 @@ class BlockGraph:
 					# Append the new path
 					var new_path :Array = path.duplicate()
 					new_path.append(vertex_neighbour)
-					
 					next_paths.append(new_path)
 					
 					# Flag the new vertex as searched
@@ -307,7 +306,7 @@ class BlockGraph:
 				break
 			
 			# Stop searching when every vertex of the graph has already been visited
-			if len(searched_vertices) == len(vertices):
+			if len(searched_vertices) == num_lines * num_columns:
 				break
 		
 		# Find the path that contains the target vertex
