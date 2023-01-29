@@ -31,3 +31,5 @@ func _ready() -> void:
 		player.call_deferred("start", player_info.name, player_info.color, player_info.input_code)
 		
 		add_child(player)
+	
+	GameManager.players_spawned()

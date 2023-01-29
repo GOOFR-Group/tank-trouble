@@ -1,5 +1,6 @@
 extends Node
 
+signal players_spawned()
 signal game_over(playerkilled)
 signal debug_mode_changed(previous, new)
 
@@ -21,6 +22,9 @@ func _ready() -> void:
 	
 	self.is_game_over = false
 	self.debug = false
+
+func players_spawned() -> void:
+	emit_signal("players_spawned")
 
 func game_over(player_killed: String) -> void:
 	is_game_over = true

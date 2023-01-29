@@ -11,10 +11,12 @@ export var block_color_happy_path :Color
 
 var rng := RandomNumberGenerator.new()
 
-# Scenes
-onready var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
+func _init() -> void:
+	var error := GameManager.connect("players_spawned", self, "_start")
+	if error != OK:
+		push_error("Walls failed to connect the players_spawned signal.")
 
-func _ready() -> void:
+func _start() -> void:
 	rng.randomize()
 	
 	var num_lines: int = GameManager.MAP_NUM_LINES
@@ -160,6 +162,8 @@ func _generate_map(block_states :Array, num_lines :int, num_columns :int) -> Arr
 
 ## Spawns the blocks respecting their wall states
 func _spawn_blocks(block_states :Array, num_lines :int, num_columns :int) -> void:
+	var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
+	
 	for i in num_lines:
 		for j in num_columns:
 			# Instantiate block
