@@ -11,4 +11,5 @@ func _ready() -> void:
 		
 		new_player.call_deferred("start", p.name, p.color, p.input_code)
 		new_player.position = Vector2(OFFSET.x*(i+1), OFFSET.y*(i+1))
+		
 		add_child(new_player)

@@ -1,6 +1,6 @@
 extends ColorRect
 
-## This it's just the text to show the player in the label
+## This is just the text to show the player in the label
 const CONTROLS = [
 	"Up/Left/Down/Right/Space",
 	"W/A/S/D/Q",
@@ -14,15 +14,10 @@ onready var TanksGrid: GridContainer = $TanksGrid
 
 func _ready() -> void:
 	hide()
-	GameManager.generate_player()
-	_show_players()
+	_show_players(2, 2)
 
 func _on_back_button_pressed() -> void:
 	hide()
-
-func _on_new_color_button_pressed() -> void:
-	GameManager.generate_player(GameManager.players.size())
-	_show_players()
 
 func _on_start_button_pressed() -> void:
 	var error := get_tree().change_scene("res://Scenes/MainScene.tscn")
@@ -30,22 +25,20 @@ func _on_start_button_pressed() -> void:
 		push_error("Menu failed to change to MainScene.")
 	
 func _on_2_players_button_pressed() -> void:
-	GameManager.generate_player()
-	TanksGrid.columns = 2
-	_show_players()
+	_show_players(2, 2)
 
 func _on_3_players_button_pressed() -> void:
-	GameManager.generate_player(3)
-	TanksGrid.columns = 3
-	_show_players()
+	_show_players(3, 3)
 
 func _on_4_players_button_pressed() -> void:
-	GameManager.generate_player(4)
-	TanksGrid.columns = 2
-	_show_players()
+	_show_players(4, 2)
 
-func _show_players() -> void:
-	remove_all_chils(TanksGrid)
+func _show_players(num_players: int, num_columns: int) -> void:
+	GameManager.generate_players(num_players)
+	TanksGrid.columns = num_columns
+	
+	for child in TanksGrid.get_children():
+		TanksGrid.remove_child(child)
 	
 	for i in range(GameManager.players.size()):
 		var player = GameManager.players[i]
@@ -56,8 +49,3 @@ func _show_players() -> void:
 		var new_player = PlayerUI.instance()
 		new_player.call_deferred("update_player", color, controls, name)
 		TanksGrid.call_deferred("add_child", new_player)
-
-func remove_all_chils(node: Node) -> void:
-	for child in node.get_children():
-		node.remove_child(child)
-

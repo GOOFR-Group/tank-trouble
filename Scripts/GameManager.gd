@@ -47,7 +47,7 @@ func set_debug_mode(value :bool) -> void:
 	emit_signal("debug_mode_changed", !debug, debug)
 
 ## This function will generate the given number of players with non-repeated random colors
-func generate_player(number_of_players = 2) -> void:
+func generate_players(number_of_players) -> void:
 	players = []
 	
 	var color_hue_slice: float = 1.0 / number_of_players
