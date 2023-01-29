@@ -21,19 +21,8 @@ var debug :bool setget set_debug_mode
 
 var is_game_over :bool
 
-var COLOR_SETS :PoolColorArray = [
-	Color(0,0,0,1), # Black
-	Color(1,0,0,1), # Red
-	Color(0,1,0,1), # Green
-	Color(0,0,1,1), # Blue
-	Color(1,1,0,1), # Yellow
-	Color(0,1,1,1), # Cyan
-	Color(1,0,1,1), # Magenta
-	Color(1,1,1,1), # White
-]
-
 ## List of players
-var players = []
+var players :Array = []
 
 func _ready() -> void:
 	self.is_game_over = false
@@ -58,20 +47,18 @@ func set_debug_mode(value :bool) -> void:
 	emit_signal("debug_mode_changed", !debug, debug)
 
 ## This function will generate the given number of players with non-repeated random colors
-func generate_player(number_of_players = 2):
+func generate_player(number_of_players = 2) -> void:
 	players = []
-	var used_colors = []
 	
+	var color_hue_slice: float = 1.0 / number_of_players
 	for i in range(number_of_players):
-		var color = COLOR_SETS[randi() % COLOR_SETS.size()]
+		var color_hue_from: float = color_hue_slice * i
+		var color_hue_to: float = color_hue_slice * (i + 1)
+		var color_hue: float = rand_range(color_hue_from, color_hue_to)
 		
-		while color in used_colors:
-			color = COLOR_SETS[randi() % COLOR_SETS.size()]
-		used_colors.append(color)
-		
+		var color :Color = Color.from_hsv(color_hue, 0.6, 0.6, 1)
 		var name = "Player " + str(i + 1)
 		var input_code = "p" + str(i + 1)
+		
 		var new_player = Player.new(name, color, input_code)
 		players.append(new_player)
-		
-	return players
