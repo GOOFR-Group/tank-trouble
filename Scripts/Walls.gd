@@ -1,11 +1,5 @@
 extends Node2D
 
-## Number of lines to spawn blocks
-export var num_lines :int = 8
-
-## Number of columns to spawn blocks
-export var num_columns :int = 14
-
 ## Space between blocks
 export var offset = Vector2(70 ,70)
 
@@ -17,17 +11,24 @@ export var block_color_happy_path :Color
 
 var rng := RandomNumberGenerator.new()
 
-# Scenes
-onready var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
+func _init() -> void:
+	var error := GameManager.connect("players_spawned", self, "_start")
+	if error != OK:
+		push_error("Walls failed to connect the players_spawned signal.")
 
-func _ready() -> void:
+func _start() -> void:
 	rng.randomize()
 	
-	# TODO: Randomize this spawn points.
-	var spawn_points :Array = [
-		[0, 0],
-		[num_lines - 1, num_columns - 1]
-	]
+	var num_lines: int = GameManager.MAP_NUM_LINES
+	var num_columns: int = GameManager.MAP_NUM_COLUMNS
+	
+	# Get spawn points
+	var spawn_points :Array = []
+	for i in len(GameManager.players):
+		var player_info :Player.Info = GameManager.players[i]
+		var spawn_point :Player.SpawnPoint = player_info.spawn_point
+		
+		spawn_points.append([spawn_point.line_index, spawn_point.column_index])
 	
 	# Set up the initial block states (every block starts with an empty state)
 	var block_states :Array = []
@@ -39,20 +40,20 @@ func _ready() -> void:
 		block_states.append(column_block_states)
 	
 	# Generate the happy path
-	block_states = _generate_happy_path(block_states, spawn_points)
+	block_states = _generate_happy_path(block_states, spawn_points, num_lines, num_columns)
 	
 	# Generate the rest of the map
-	block_states = _generate_map(block_states)
+	block_states = _generate_map(block_states, num_lines, num_columns)
 	
 	# Spawn the blocks
-	_spawn_blocks(block_states)
+	_spawn_blocks(block_states, num_lines, num_columns)
 
 ## Generates a happy path that travels all the given spawn points.
 ## The path is generated using the graph (theory) search algorithm breadth-first search.
 ##
 ## Rules:
 ## 1. All walls of the block of the happy path are open, except those that represent edges
-func _generate_happy_path(block_states :Array, spawn_points :Array) -> Array:
+func _generate_happy_path(block_states :Array, spawn_points :Array, num_lines :int, num_columns :int) -> Array:
 	# There needs to be more than 1 point to generate a path
 	if len(spawn_points) < 2:
 		return block_states
@@ -102,7 +103,7 @@ func _generate_happy_path(block_states :Array, spawn_points :Array) -> Array:
 ## - Its adjacent wall is not opened
 ## 2. A wall might be open when:
 ## - Its adjacent wall is opened
-func _generate_map(block_states :Array) -> Array:
+func _generate_map(block_states :Array, num_lines :int, num_columns :int) -> Array:
 	for i in num_lines:
 		for j in num_columns:
 			# Avoid modifying already defined blocks
@@ -160,7 +161,9 @@ func _generate_map(block_states :Array) -> Array:
 	return block_states
 
 ## Spawns the blocks respecting their wall states
-func _spawn_blocks(block_states :Array) -> void:
+func _spawn_blocks(block_states :Array, num_lines :int, num_columns :int) -> void:
+	var block_scene = preload("res://Prefabs/Map/WallBlock.tscn")
+	
 	for i in num_lines:
 		for j in num_columns:
 			# Instantiate block
