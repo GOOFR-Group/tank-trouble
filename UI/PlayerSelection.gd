@@ -21,7 +21,7 @@ func _on_back_button_pressed() -> void:
 	hide()
 
 func _on_start_button_pressed() -> void:
-	var error := get_tree().change_scene("res://Scenes/MainScene.tscn")
+	var error := get_tree().change_scene("res://Levels/MainLevel.tscn")
 	if error != OK:
 		push_error("PlayerSelection failed to change to MainScene.")
 	

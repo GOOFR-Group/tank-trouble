@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Scripts/Tank.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Player/Tanks/Tank.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/Tanks/Wheels/Both Backwards/BothBackwards1.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Audio/Explosion.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Images/Tanks/Wheels/Both Forward/BothForward1.png" type="Texture" id=4]
