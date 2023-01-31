@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/SpawnSystem.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/SpawnSystem.gd" type="Script" id=1]
 [ext_resource path="res://UI/RestartMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Walls.gd" type="Script" id=5]
+[ext_resource path="res://Prefabs/Map/Walls.gd" type="Script" id=5]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0 )

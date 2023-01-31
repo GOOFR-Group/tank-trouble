@@ -1,4 +1,4 @@
-extends "res://Scripts/Tank.gd"
+extends "res://Prefabs/Player/Tanks/Tank.gd"
 
 var left: String
 var right: String

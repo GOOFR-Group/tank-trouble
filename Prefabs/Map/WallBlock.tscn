@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scripts/WallBlock.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Map/WallBlock.gd" type="Script" id=1]
+
 
 [sub_resource type="Gradient" id=7]
 offsets = PoolRealArray( 0 )
