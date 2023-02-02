@@ -27,7 +27,11 @@ func _ready() -> void:
 		var line_index :int = spawn_point.line_index
 		var column_index :int = spawn_point.column_index
 		
+		var map_center :Vector2 = INITIAL_SPAWN_POSITION - (SPAWN_OFFSET / 2)
+		map_center += Vector2(SPAWN_OFFSET.x * (GameManager.MAP_NUM_COLUMNS / 2.0), SPAWN_OFFSET.y * (GameManager.MAP_NUM_LINES / 2.0))
+		
 		player.position = INITIAL_SPAWN_POSITION + Vector2(SPAWN_OFFSET.x * column_index, SPAWN_OFFSET.y * line_index)
+		player.rotation = player.position.angle_to_point(map_center) - PI / 2
 		player.call_deferred("start", player_info.name, player_info.color, player_info.input_code)
 		
 		add_child(player)
