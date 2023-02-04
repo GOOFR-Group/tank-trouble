@@ -33,7 +33,7 @@ func kill_player(player_killed: String) -> void:
 		return
 	
 	for i in len(current_players):
-		var player_info :Player.Info = current_players[i]
+		var player_info: Player.Info = current_players[i]
 		if player_info.name == player_killed:
 			current_players.remove(i)
 			break
