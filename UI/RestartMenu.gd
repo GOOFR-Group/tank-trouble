@@ -7,10 +7,10 @@ func _ready() -> void:
 	if error != OK:
 		push_error("RestartMenu failed to connect the game_over signal.")
 
-func game_over(player_killed: String) -> void:
+func game_over(winner: String) -> void:
 	show()
 	
-	$Background/Label.text = player_killed + " is Dead!"
+	$Background/Label.text = winner + " won!"
 	$AnimationPlayer.play("show")
 
 func _on_restart_button_pressed() -> void:
