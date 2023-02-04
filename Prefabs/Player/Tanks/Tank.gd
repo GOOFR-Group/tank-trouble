@@ -124,8 +124,11 @@ func _on_shoot_timeout():
 	_can_shoot = true
 
 func _on_killed() -> void:
+	if GameManager.is_game_over:
+		return
+	
 	# Killing event
-	GameManager.game_over(playerName)
+	GameManager.kill_player(playerName)
 	
 	# Hide child nodes
 	_disable()

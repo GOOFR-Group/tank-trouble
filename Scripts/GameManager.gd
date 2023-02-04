@@ -1,7 +1,7 @@
 extends Node
 
 signal players_spawned()
-signal game_over(playerkilled)
+signal game_over(winner)
 signal debug_mode_changed(previous, new)
 
 # Map matrix configuration
@@ -16,6 +16,7 @@ var is_game_over :bool
 
 ## Defines the list of players
 var players :Array = []
+var current_players :Array = []
 
 func _ready() -> void:
 	randomize()
@@ -24,11 +25,24 @@ func _ready() -> void:
 	self.debug = false
 
 func players_spawned() -> void:
+	current_players = players.duplicate()
 	emit_signal("players_spawned")
 
-func game_over(player_killed: String) -> void:
+func kill_player(player_killed: String) -> void:
+	if len(current_players) <= 1:
+		return
+	
+	for i in len(current_players):
+		var player_info: Player.Info = current_players[i]
+		if player_info.name == player_killed:
+			current_players.remove(i)
+			break
+	
+	if len(current_players) > 1:
+		return
+	
 	is_game_over = true
-	emit_signal("game_over", player_killed)
+	emit_signal("game_over", current_players[0].name)
 
 func restart_game() -> void:
 	is_game_over = false
