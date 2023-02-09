@@ -56,10 +56,12 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["player"]]
+z_index = 5
 frames = SubResource( 3 )
 animation = "Idle"
 
 [node name="Sprite" type="Sprite" parent="."]
+z_index = 5
 texture = ExtResource( 8 )
 
 [node name="Collision" type="CollisionShape2D" parent="." groups=["player"]]
