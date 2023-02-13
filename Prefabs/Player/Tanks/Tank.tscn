@@ -50,6 +50,7 @@ extents = Vector2( 16, 16 )
 
 [node name="Tank" type="KinematicBody2D" groups=["player"]]
 physics_interpolation_mode = 2
+z_index = 5
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true

@@ -41,8 +41,11 @@ func kill_player(player_killed: String) -> void:
 	if len(current_players) > 1:
 		return
 	
+	var player_info :Player.Info = current_players[0]
+	player_info.score += 1
+	
 	is_game_over = true
-	emit_signal("game_over", current_players[0].name)
+	emit_signal("game_over", player_info.name)
 
 func restart_game() -> void:
 	is_game_over = false
