@@ -6,15 +6,15 @@ var backwards: String
 var forward: String
 var shoot: String
 
-func start(name: String, color: Color, input_code: String) -> void:
-	playerName = name
-	$Sprite.modulate = color
+func start(_name: String, _color: Color, _input_code: String) -> void:
+	playerName = _name
+	$Sprite2D.modulate = _color
 	
-	left = input_code + "_rotate_left"
-	right = input_code + "_rotate_right"
-	backwards = input_code + "_move_backwards"
-	forward = input_code + "_move_forward"
-	shoot = input_code + "_shoot"
+	left = _input_code + "_rotate_left"
+	right = _input_code + "_rotate_right"
+	backwards = _input_code + "_move_backwards"
+	forward = _input_code + "_move_forward"
+	shoot = _input_code + "_shoot"
 
 func _input_rotate() -> int:
 	return int(Input.get_axis(left, right))

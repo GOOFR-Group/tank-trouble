@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-func update_player(color: Color, controls: String, name: String) -> void:
-	$Tank.modulate = color
-	$Controls.text = controls
-	$Name.text = name
+func update_player(_color: Color, _controls: String, _name: String) -> void:
+	$Tank.modulate = _color
+	$Controls.text = _controls
+	$Name.text = _name

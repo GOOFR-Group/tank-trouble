@@ -1,7 +1,7 @@
 extends Control
 
 func _init() -> void:
-	var error := GameManager.connect("debug_mode_changed", self, "_on_debug_mode_changed")
+	var error := GameManager.connect("debug_mode_changed", Callable(self, "_on_debug_mode_changed"))
 	if error != OK:
 		push_error("Menu failed to connect the debug_mode_changed signal.")
 

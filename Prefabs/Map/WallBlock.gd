@@ -1,7 +1,7 @@
 extends Node2D
 
 # Node references
-var _background :Sprite
+var _background :Sprite2D
 var _left_wall :StaticBody2D
 var _top_wall :StaticBody2D
 var _right_wall :StaticBody2D
