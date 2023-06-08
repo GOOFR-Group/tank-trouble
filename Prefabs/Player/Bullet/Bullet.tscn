@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxiquvt3v4b85"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://Prefabs/Player/Bullet.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/Player/Bullet/Bullet.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cnsrx3sc3jma7" path="res://Assets/Images/Bullet.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://fu0o3lyy4n3d" path="res://Assets/Audio/Hit.wav" id="3"]
 [ext_resource type="AudioStream" uid="uid://b7dg2t42v3ac4" path="res://Assets/Audio/Shoot.wav" id="4"]

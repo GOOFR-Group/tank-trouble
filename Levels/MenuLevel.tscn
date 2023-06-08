@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu6fgwt8krbny"]
+[gd_scene load_steps=7 format=3 uid="uid://c3o8ms48an6o5"]
 
-[ext_resource type="Script" path="res://UI/Menu.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://b4yksjypxgiu8" path="res://Assets/Fonts/PressStart2P/PressStart2P-Regular.ttf" id="2"]
-[ext_resource type="PackedScene" uid="uid://dakuybaqwrcpm" path="res://UI/PlayerSelection.tscn" id="3"]
+[ext_resource type="Script" path="res://Scripts/Levels/MenuLevel.gd" id="1_uqte2"]
+[ext_resource type="FontFile" uid="uid://b4yksjypxgiu8" path="res://Assets/Fonts/PressStart2P/PressStart2P-Regular.ttf" id="2_k77sr"]
+[ext_resource type="PackedScene" uid="uid://ctmo01ybxrkrb" path="res://UI/PlayerSelection.tscn" id="3_qedn3"]
 
 [sub_resource type="FontFile" id="1"]
-fallbacks = Array[Font]([ExtResource("2")])
+fallbacks = Array[Font]([ExtResource("2_k77sr")])
 face_index = null
 embolden = null
 transform = null
@@ -17,7 +17,7 @@ cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("2")])
+fallbacks = Array[Font]([ExtResource("2_k77sr")])
 face_index = null
 embolden = null
 transform = null
@@ -29,7 +29,7 @@ cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="3"]
-fallbacks = Array[Font]([ExtResource("2")])
+fallbacks = Array[Font]([ExtResource("2_k77sr")])
 face_index = null
 embolden = null
 transform = null
@@ -40,14 +40,14 @@ cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[node name="Menu" type="Control"]
+[node name="MenuLevel" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1")
+script = ExtResource("1_uqte2")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -109,12 +109,9 @@ size_flags_horizontal = 3
 theme_override_fonts/font = SubResource("3")
 text = "Exit"
 
-[node name="PlayerSelection" parent="." instance=ExtResource("3")]
+[node name="PlayerSelection" parent="." instance=ExtResource("3_qedn3")]
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+layout_mode = 1
 
 [connection signal="pressed" from="ControlButtons/Play" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ControlButtons/HBoxContainer/DebugBTN" to="." method="_on_debug_button_pressed"]

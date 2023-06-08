@@ -23,8 +23,8 @@ const WHEEL_ANIMATION_LEFT_BACKWARDS_RIGHT_FORWARD :String = "LeftBackwardsRight
 var _can_shoot :bool
 
 # Scenes
-@onready var main_scene = get_node("/root/MainScene")
-@onready var bullet_scene = preload("res://Prefabs/Player/Bullet.tscn")
+@onready var main_scene = get_node("/root/MainLevel")
+@onready var bullet_scene = preload("res://Prefabs/Player/Bullet/Bullet.tscn")
 @onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
 
 # Node references

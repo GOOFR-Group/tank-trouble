@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bs1dwup7c5qh1"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://Prefabs/Map/WallBlock.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/Map/WallBlock.gd" id="1"]
 
 [sub_resource type="Gradient" id="7"]
 offsets = PackedFloat32Array(0)
@@ -45,7 +45,6 @@ position = Vector2(40, 5)
 rotation = 1.5708
 
 [node name="Sprite2D" type="Sprite2D" parent="Top"]
-scale = Vector2(1, 80)
 texture = SubResource("5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
@@ -56,7 +55,6 @@ position = Vector2(75, 40)
 rotation = 3.14159
 
 [node name="Sprite2D" type="Sprite2D" parent="Right"]
-scale = Vector2(1, 80)
 texture = SubResource("5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
@@ -67,7 +65,6 @@ position = Vector2(40, 75)
 rotation = 4.71239
 
 [node name="Sprite2D" type="Sprite2D" parent="Bottom"]
-scale = Vector2(1, 80)
 texture = SubResource("5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]

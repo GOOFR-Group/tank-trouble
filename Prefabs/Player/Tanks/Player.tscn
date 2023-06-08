@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://cw60yaxek4oba"]
+[gd_scene load_steps=17 format=3]
 
-[ext_resource type="PackedScene" uid="uid://bp0qf1wv5tb7k" path="res://Prefabs/Player/Tanks/Tank.tscn" id="1"]
-[ext_resource type="Script" path="res://Prefabs/Player/Tanks/PlayerTank.gd" id="2"]
+[ext_resource type="PackedScene" path="res://Prefabs/Player/Tanks/Tank.tscn" id="1"]
+[ext_resource type="Script" path="res://Scripts/Player/Tanks/PlayerTank.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://nk5rnhfdqgm2" path="res://Assets/Images/Tanks/Wheels/Both Backwards/BothBackwards1.png" id="3_dk4kr"]
 [ext_resource type="Texture2D" uid="uid://bij3t7ldtvrer" path="res://Assets/Images/Tanks/Wheels/Both Backwards/BothBackwards2.png" id="4_a8sa1"]
 [ext_resource type="Texture2D" uid="uid://b2fccb00sdb4j" path="res://Assets/Images/Tanks/Wheels/Both Backwards/BothBackwards3.png" id="5_gxuq5"]

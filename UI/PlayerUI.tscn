@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdo1jw5dletf1"]
+[gd_scene load_steps=4 format=3 uid="uid://bv0van65m2y17"]
 
 [ext_resource type="Texture2D" uid="uid://cndj2d6rmptvn" path="res://Assets/Images/Tanks/Base/Tank.png" id="1"]
-[ext_resource type="Script" path="res://UI/PlayerUI.gd" id="2"]
+[ext_resource type="Script" path="res://Scripts/UI/PlayerUI.gd" id="1_mw5ua"]
 [ext_resource type="FontFile" uid="uid://b4yksjypxgiu8" path="res://Assets/Fonts/PressStart2P/PressStart2P-Regular.ttf" id="3_btx3g"]
 
 [node name="PlayerUI" type="VBoxContainer"]
-offset_right = 366.0
-offset_bottom = 206.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
-script = ExtResource("2")
+script = ExtResource("1_mw5ua")
 
 [node name="Tank" type="TextureRect" parent="."]
 texture_filter = 1

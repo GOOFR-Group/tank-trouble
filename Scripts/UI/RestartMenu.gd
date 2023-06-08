@@ -19,6 +19,6 @@ func _on_restart_button_pressed() -> void:
 func _on_exit_button_pressed() -> void:
 	GameManager.is_game_over = false
 	
-	var error := get_tree().change_scene_to_file("res://UI/Menu.tscn")
+	var error := get_tree().change_scene_to_file("res://Levels/MenuLevel.tscn")
 	if error != OK:
 		push_error("RestartMenu failed to change to Menu.")

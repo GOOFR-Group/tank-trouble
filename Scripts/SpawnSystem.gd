@@ -33,7 +33,7 @@ func _ready() -> void:
 		var player = player_scene.instantiate()
 		
 		player.position = player_position
-		player.rotation = player.position.angle_to_point(map_center) - PI / 2
+		player.rotation = player.position.angle_to_point(map_center) + PI / 2
 		player.call_deferred("start", player_info.name, player_info.color, player_info.input_code)
 		
 		add_child(player)
