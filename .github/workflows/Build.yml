@@ -10,7 +10,7 @@ on:
       - "main"
 
 env:
-  GODOT_VERSION: 3.5.1
+  GODOT_VERSION: 4.0.3
   EXPORT_NAME: Tank-Trouble # Project Name
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.5.1
+      image: barichello/godot-ci:4.0.3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -45,7 +45,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.5.1
+      image: barichello/godot-ci:4.0.3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -69,7 +69,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.5.1
+      image: barichello/godot-ci:4.0.3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -93,7 +93,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.5.1
+      image: barichello/godot-ci:4.0.3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
