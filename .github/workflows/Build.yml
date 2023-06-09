@@ -34,7 +34,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          godot -v --export-release "HTML5" ./build/web/index.html
+          godot -v --rendering-driver opengl3 --export-release "HTML5" ./build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -58,7 +58,7 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-          godot -v --export-release "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+          godot -v --rendering-driver opengl3 --export-release "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -82,7 +82,7 @@ jobs:
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
-          godot -v --export-release "Mac OSX" ./build/mac/$EXPORT_NAME.zip
+          godot -v --rendering-driver opengl3 --export-release "Mac OSX" ./build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
@@ -106,7 +106,7 @@ jobs:
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
-          godot -v --export-release "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
+          godot -v --rendering-driver opengl3 --export-release "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
