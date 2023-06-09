@@ -1,9 +1,1 @@
 res://Levels/MainLevel.tscn
-res://Prefabs/Map/WallBlock.tscn
-res://Levels/MenuLevel.tscn
-res://UI/PlayerSelection.tscn
-res://UI/PlayerUI.tscn
-res://UI/RestartMenu.tscn
-res://Scripts/Player/Tanks/Tank.gd
-res://Prefabs/Player/Score/ScoreLabel.tscn
-res://Scripts/SpawnSystem.gd
