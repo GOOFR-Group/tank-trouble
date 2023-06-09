@@ -26,15 +26,18 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Import Assets
+        run: |
+          godot -v -e --quit --headless
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          godot -v --export-release "HTML5" ./build/web/index.html
+          godot -v --export-release --headless "HTML5" ./build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: web
-          path: ./build/web
+          path: build/web
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
