@@ -29,9 +29,9 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          ll
+          ls -l
           godot -v --export-release --headless "HTML5" ./build/web/index.html
-          ll
+          ls -l
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
