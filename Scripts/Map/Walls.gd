@@ -1,18 +1,18 @@
 extends Node2D
 
 ## Space between blocks
-export var offset = Vector2(70 ,70)
+@export var offset = Vector2(70 ,70)
 
 ## Background color of the regular blocks
-export var block_color :Color
+@export var block_color :Color
 
 ## Background color of the happy path blocks
-export var block_color_happy_path :Color
+@export var block_color_happy_path :Color
 
 var rng := RandomNumberGenerator.new()
 
 func _init() -> void:
-	var error := GameManager.connect("players_spawned", self, "_start")
+	var error := GameManager.connect("players_spawned", Callable(self, "_start"))
 	if error != OK:
 		push_error("Walls failed to connect the players_spawned signal.")
 
@@ -167,7 +167,7 @@ func _spawn_blocks(block_states :Array, num_lines :int, num_columns :int) -> voi
 	for i in num_lines:
 		for j in num_columns:
 			# Instantiate block
-			var block = block_scene.instance()
+			var block = block_scene.instantiate()
 			
 			# Set block position
 			var block_position := Vector2(offset.x * j, offset.y * i)

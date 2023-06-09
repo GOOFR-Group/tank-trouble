@@ -5,15 +5,15 @@ on:
       - "main"
 
 env:
-  GODOT_VERSION: 3.5.1
+  GODOT_VERSION: 4.0.3
   EXPORT_NAME: Tank-Trouble # Project Name
 
 jobs:
   export-web:
     name: Web Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:3.5.1
+      image: barichello/godot-ci:4.0.3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,18 +23,18 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Install rsync 📚
-        run: |
-          apt-get update && apt-get install -y rsync
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          godot -v --export "HTML5" ./build/web/index.html
+          godot -v --export-release --headless "HTML5" ./build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: web
           path: build/web
+      - name: Install rsync 📚
+        run: |
+          apt-get update && apt-get install -y rsync
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:

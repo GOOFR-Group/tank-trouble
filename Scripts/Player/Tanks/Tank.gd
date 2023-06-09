@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 # warning-ignore:unused_signal
 signal killed()
@@ -11,27 +11,27 @@ const WHEEL_ANIMATION_LEFT_FORWARD_RIGHT_BACKWARDS :String = "LeftForwardRightBa
 const WHEEL_ANIMATION_LEFT_BACKWARDS_RIGHT_FORWARD :String = "LeftBackwardsRightForward"
 
 ## Player name
-export var playerName :String = ""
+@export var playerName :String = ""
 
 ## Speed to move the tank forward/backwards
-export var speed :float = 150 
+@export var speed :float = 150 
 
 ## Speed to rotate the tank to the left/right
-export var rotation_speed :float = 5
+@export var rotation_speed :float = 5
 
 ## Defines if the player is able to shoot
 var _can_shoot :bool
 
 # Scenes
-onready var main_scene = get_node("/root/MainScene")
-onready var bullet_scene = preload("res://Prefabs/Player/Bullet.tscn")
-onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
+@onready var main_scene = get_node("/root/MainLevel")
+@onready var bullet_scene = preload("res://Prefabs/Player/Bullet/Bullet.tscn")
+@onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
 
 # Node references
-onready var animated_sprite :AnimatedSprite = $AnimatedSprite
-onready var bullet_spawn_point :Position2D = $BulletSpawnPoint
-onready var bullet_timer :Timer = $BulletTimer
-onready var explosion_audio :AudioStreamPlayer = $ExplosionAudio
+@onready var animated_sprite :AnimatedSprite2D = $AnimatedSprite2D
+@onready var bullet_spawn_point :Marker2D = $BulletSpawnPoint
+@onready var bullet_timer :Timer = $BulletTimer
+@onready var explosion_audio :AudioStreamPlayer = $ExplosionAudio
 
 func _ready():
 	_can_shoot = true
@@ -45,7 +45,7 @@ func _process(__ :float):
 	# Shoot
 	if _input_shoot() && _can_shoot:
 		# Spawn bullet
-		var bullet = bullet_scene.instance()
+		var bullet = bullet_scene.instantiate()
 		bullet.set_position(bullet_spawn_point.get_global_position())
 		bullet.set_rotation(bullet_spawn_point.get_global_rotation())
 		main_scene.add_child(bullet)
@@ -68,8 +68,8 @@ func _physics_process(delta :float):
 	
 	# Move
 	var forward_vector := Vector2.UP.rotated(rotation)
-	var velocity = move_direction * forward_vector * speed
-	velocity = move_and_slide(velocity)
+	velocity = move_direction * forward_vector * speed
+	move_and_slide()
 	
 	# Player is rotating left
 	if rotation_direction == -1:
@@ -134,13 +134,13 @@ func _on_killed() -> void:
 	_disable()
 	
 	# Spawn explosion
-	var explosion = explosion_scene.instance()
+	var explosion = explosion_scene.instantiate()
 	explosion.set_position(position)
 	main_scene.add_child(explosion)
 	
 	# Play explosion audio
 	explosion_audio.play()
-	yield(explosion_audio, "finished")
+	await explosion_audio.finished
 	
 	# Destroy self
 	queue_free()

@@ -1,7 +1,7 @@
-extends Particles2D
+extends GPUParticles2D
 
 # Node references
-onready var life_timer :Timer = $LifeTimer
+@onready var life_timer :Timer = $LifeTimer
 
 func _ready() -> void:
 	one_shot = true

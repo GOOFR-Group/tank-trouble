@@ -19,10 +19,10 @@ class Info:
 	var score: int
 	var is_dead: bool
 	
-	func _init(name: String, color: Color, input_code: String) -> void:
-		self.name = name
-		self.color = color
-		self.input_code = input_code
+	func _init(_name: String, _color: Color, _input_code: String) -> void:
+		self.name = _name
+		self.color = _color
+		self.input_code = _input_code
 		
 		self.spawn_point = SpawnPoint.new(0, 0)
 		self.score = 0
