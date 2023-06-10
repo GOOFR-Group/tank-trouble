@@ -19,13 +19,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           lfs: true
-      - name: Setup
+      - name: Setup Export Templates
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Install rsync 📚
-        run: |
-          apt-get update && apt-get install -y rsync
       - name: Web Build
         run: |
           mkdir -v -p build/web
@@ -35,6 +32,9 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Install rsync 📚
+        run: |
+          apt-get update && apt-get install -y rsync
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
