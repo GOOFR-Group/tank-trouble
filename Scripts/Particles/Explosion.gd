@@ -1,4 +1,4 @@
-extends GPUParticles2D
+extends CPUParticles2D
 
 # Node references
 @onready var life_timer :Timer = $LifeTimer
