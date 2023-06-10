@@ -1,12 +1,14 @@
-extends CharacterBody2D
+extends KinematicBody2D
 
 ## Speed of the bullet
-@export var speed :int = 400
+export var speed :int = 400
 
 ## Player tag
-@export var player_tag :String = "player"
+export var player_tag :String = "player"
 
-@onready var hit_audio :AudioStreamPlayer = $HitAudio
+var velocity :Vector2
+
+onready var hit_audio :AudioStreamPlayer = $HitAudio
 
 func _ready() -> void:
 	# Calculate velocity
@@ -18,13 +20,13 @@ func _physics_process(delta :float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision != null:
 		# Destroy the player on collision
-		if collision.get_collider().is_in_group(player_tag):
-			collision.get_collider().emit_signal("killed")
+		if collision.collider.is_in_group(player_tag):
+			collision.collider.emit_signal("killed")
 			queue_free()
 			return
 		
 		# Update velocity on collision
-		velocity = velocity.bounce(collision.get_normal())
+		velocity = velocity.bounce(collision.normal)
 		
 		hit_audio.play()
 

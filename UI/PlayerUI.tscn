@@ -1,48 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv0van65m2y17"]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource type="Texture2D" uid="uid://cndj2d6rmptvn" path="res://Assets/Images/Tanks/Base/Tank.png" id="1"]
-[ext_resource type="Script" path="res://Scripts/UI/PlayerUI.gd" id="1_mw5ua"]
-[ext_resource type="FontFile" uid="uid://b4yksjypxgiu8" path="res://Assets/Fonts/PressStart2P/PressStart2P-Regular.ttf" id="3_btx3g"]
+[ext_resource path="res://Assets/Images/Tanks/Base/Tank.png" type="Texture" id=1]
+[ext_resource path="res://UI/PlayerUI.gd" type="Script" id=2]
 
 [node name="PlayerUI" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+margin_right = 366.0
+margin_bottom = 206.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
-script = ExtResource("1_mw5ua")
+custom_constants/separation = 10
+script = ExtResource( 2 )
 
 [node name="Tank" type="TextureRect" parent="."]
-texture_filter = 1
-layout_mode = 2
+margin_right = 366.0
+margin_bottom = 158.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1")
-stretch_mode = 5
+texture = ExtResource( 1 )
+stretch_mode = 6
 
 [node name="Controls" type="Label" parent="."]
-texture_filter = 1
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_btx3g")
+margin_top = 168.0
+margin_right = 366.0
+margin_bottom = 182.0
 text = "W/A/S/D/Q"
-horizontal_alignment = 1
+align = 1
+valign = 1
 uppercase = true
 
 [node name="Name" type="Label" parent="."]
-texture_filter = 1
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_btx3g")
+margin_top = 192.0
+margin_right = 366.0
+margin_bottom = 206.0
 text = "Player 1"
-horizontal_alignment = 1
+align = 1
+valign = 1
 
 [node name="NameInput" type="LineEdit" parent="."]
 visible = false
-layout_mode = 2
+margin_top = 132.0
+margin_right = 366.0
+margin_bottom = 206.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Player 1"
-placeholder_text = "Player 1 Name"
+align = 1
 clear_button_enabled = true
+placeholder_text = "Player 1 Name"
+__meta__ = {
+"_editor_description_": "TODO: In the future refactor to player change the player name"
+}
