@@ -50,12 +50,12 @@ jobs:
           lfs: true
       - name: Import Assets
         run: |
-          ls -l
+          ls -la
           godot -v -e --quit --headless
-          ls -l
+          ls -la
       - name: Setup
         run: |
-          ls -l
+          ls -la
           mkdir -v -p ~/.local/share/godot/export_templates
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Windows Build
