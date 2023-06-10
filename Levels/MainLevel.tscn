@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/SpawnSystem.gd" type="Script" id=1]
 [ext_resource path="res://UI/RestartMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/Map/Walls.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Map/Walls.gd" type="Script" id=5]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0 )
@@ -11,7 +11,7 @@ colors = PoolColorArray( 0.823529, 0.823529, 0.823529, 1 )
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
 
-[node name="MainScene" type="Node2D"]
+[node name="MainLevel" type="Node2D"]
 
 [node name="UI" parent="." instance=ExtResource( 3 )]
 

@@ -4,8 +4,8 @@ const INITIAL_SPAWN_POSITION = Vector2(60, 55)
 const SPAWN_OFFSET = Vector2(70, 70)
 
 # Scenes
-onready var player_scene: PackedScene = preload("res://Prefabs/Player/Tanks/Player.tscn")
-onready var score_label_scene: PackedScene = preload("res://Prefabs/Player/Score/ScoreLabel.tscn")
+onready var player_scene: PackedScene = preload("res://Prefabs/Player/Player.tscn")
+onready var score_label_scene: PackedScene = preload("res://Prefabs/Player/ScoreLabel.tscn")
 
 func _ready() -> void:
 	# Randomize spawn points
@@ -45,4 +45,4 @@ func _ready() -> void:
 		
 		add_child(score_label)
 	
-	GameManager.players_spawned()
+	GameManager.inform_players_spawned()

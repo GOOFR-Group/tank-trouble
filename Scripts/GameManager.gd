@@ -24,7 +24,7 @@ func _ready() -> void:
 	self.is_game_over = false
 	self.debug = false
 
-func players_spawned() -> void:
+func inform_players_spawned() -> void:
 	current_players = players.duplicate()
 	emit_signal("players_spawned")
 
@@ -72,9 +72,9 @@ func generate_players(number_of_players) -> void:
 		var color_hue_to: float = color_hue_slice * (i + 1)
 		var color_hue: float = rand_range(color_hue_from, color_hue_to)
 		
-		var color: Color = Color.from_hsv(color_hue, 0.6, 0.6, 1)
-		var name: String = "Player " + str(i + 1)
-		var input_code: String = "p" + str(i + 1)
+		var p_color: Color = Color.from_hsv(color_hue, 0.6, 0.6, 1)
+		var p_name: String = "Player " + str(i + 1)
+		var p_input_code: String = "p" + str(i + 1)
 		
-		var new_player = Player.Info.new(name, color, input_code)
+		var new_player = Player.Info.new(p_name, p_color, p_input_code)
 		players.append(new_player)
