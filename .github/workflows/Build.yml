@@ -48,10 +48,16 @@ jobs:
         uses: actions/checkout@v3
         with:
           lfs: true
-      # - name: Setup
-      #   run: |
-      #     mkdir -v -p ~/.local/share/godot/export_templates
-      #     mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Import Assets
+        run: |
+          ls -l
+          godot -v -e --quit --headless
+          ls -l
+      - name: Setup
+        run: |
+          ls -l
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
