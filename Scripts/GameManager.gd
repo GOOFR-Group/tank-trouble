@@ -9,7 +9,7 @@ const MAP_NUM_LINES: int = 8
 const MAP_NUM_COLUMNS: int = 14
 
 # Debug setting
-var debug :bool: set = set_debug_mode
+var debug :bool setget set_debug_mode
 
 ## Defines the current state of the game
 var is_game_over :bool
@@ -35,7 +35,7 @@ func kill_player(player_killed: String) -> void:
 	for i in len(current_players):
 		var player_info: Player.Info = current_players[i]
 		if player_info.name == player_killed:
-			current_players.remove_at(i)
+			current_players.remove(i)
 			break
 	
 	if len(current_players) > 1:
@@ -70,7 +70,7 @@ func generate_players(number_of_players) -> void:
 	for i in number_of_players:
 		var color_hue_from: float = color_hue_slice * i
 		var color_hue_to: float = color_hue_slice * (i + 1)
-		var color_hue: float = randf_range(color_hue_from, color_hue_to)
+		var color_hue: float = rand_range(color_hue_from, color_hue_to)
 		
 		var p_color: Color = Color.from_hsv(color_hue, 0.6, 0.6, 1)
 		var p_name: String = "Player " + str(i + 1)

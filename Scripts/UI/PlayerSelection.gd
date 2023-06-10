@@ -8,9 +8,9 @@ const CONTROLS = [
 	"8/4/5/6/7", # Numeric Keyboard
 ]
 
-@onready var PlayerUI: PackedScene = preload("res://UI/PlayerUI.tscn")
+onready var PlayerUI: PackedScene = preload("res://UI/PlayerUI.tscn")
 
-@onready var TanksGrid: GridContainer = $TanksGrid
+onready var TanksGrid: GridContainer = $TanksGrid
 
 func _ready() -> void:
 	hide()
@@ -21,7 +21,7 @@ func _on_back_button_pressed() -> void:
 	hide()
 
 func _on_start_button_pressed() -> void:
-	var error := get_tree().change_scene_to_file("res://Levels/MainLevel.tscn")
+	var error := get_tree().change_scene("res://Levels/MainLevel.tscn")
 	if error != OK:
 		push_error("PlayerSelection failed to change to MainScene.")
 	
@@ -50,6 +50,6 @@ func _show_players(num_players: int, num_columns: int) -> void:
 		var player = GameManager.players[i]
 		var controls = CONTROLS[i]
 		
-		var new_player = PlayerUI.instantiate()
+		var new_player = PlayerUI.instance()
 		new_player.call_deferred("update_player", player.color, controls, player.name)
 		TanksGrid.call_deferred("add_child", new_player)

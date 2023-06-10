@@ -1,93 +1,88 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctmo01ybxrkrb"]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource type="Script" path="res://Scripts/UI/PlayerSelection.gd" id="1_0bo21"]
-[ext_resource type="FontFile" uid="uid://b4yksjypxgiu8" path="res://Assets/Fonts/PressStart2P/PressStart2P-Regular.ttf" id="2"]
+[ext_resource path="res://Assets/Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/UI/PlayerSelection.gd" type="Script" id=3]
 
-[sub_resource type="FontFile" id="2"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
 
 [node name="PlayerSelection" type="ColorRect"]
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
-script = ExtResource("1_0bo21")
+color = Color( 1, 1, 1, 0 )
+script = ExtResource( 3 )
 
 [node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.588235)
+color = Color( 0, 0, 0, 0.588235 )
 
 [node name="ActionsHBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
 anchor_right = 1.0
-offset_bottom = 22.0
+margin_bottom = 22.0
 
 [node name="Back" type="Button" parent="ActionsHBoxContainer"]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
+modulate = Color( 1, 0, 0, 1 )
+margin_right = 510.0
+margin_bottom = 22.0
+grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("2")
+custom_fonts/font = SubResource( 2 )
 text = "<- Back"
 
 [node name="Start" type="Button" parent="ActionsHBoxContainer"]
-modulate = Color(0.290196, 1, 0, 1)
-layout_mode = 2
+modulate = Color( 0.290196, 1, 0, 1 )
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 22.0
+grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("2")
+custom_fonts/font = SubResource( 2 )
 text = "Start ->"
 
 [node name="TanksGrid" type="GridContainer" parent="."]
-layout_mode = 0
 anchor_top = 0.05
 anchor_right = 1.0
 anchor_bottom = 0.95
 size_flags_horizontal = 7
 size_flags_vertical = 3
-theme_override_constants/v_separation = 20
+custom_constants/vseparation = 20
 columns = 2
 
 [node name="PlayersButtonsHBoxContainer2" type="HBoxContainer" parent="."]
-layout_mode = 0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -22.0
+margin_top = -22.0
 
 [node name="2Players" type="Button" parent="PlayersButtonsHBoxContainer2"]
-modulate = Color(0.290196, 1, 0, 1)
-layout_mode = 2
+modulate = Color( 0.290196, 1, 0, 1 )
+margin_right = 338.0
+margin_bottom = 22.0
+grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("2")
+custom_fonts/font = SubResource( 2 )
 text = "2 Players"
 
 [node name="3Players" type="Button" parent="PlayersButtonsHBoxContainer2"]
-modulate = Color(1, 0.74902, 0, 1)
-layout_mode = 2
+modulate = Color( 1, 0.74902, 0, 1 )
+margin_left = 342.0
+margin_right = 681.0
+margin_bottom = 22.0
+grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("2")
+custom_fonts/font = SubResource( 2 )
 text = "3 Players"
 
 [node name="4Players" type="Button" parent="PlayersButtonsHBoxContainer2"]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 685.0
+margin_right = 1024.0
+margin_bottom = 22.0
+grow_vertical = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = SubResource("2")
+custom_fonts/font = SubResource( 2 )
 text = "4 Players"
 
 [connection signal="pressed" from="ActionsHBoxContainer/Back" to="." method="_on_back_button_pressed"]
