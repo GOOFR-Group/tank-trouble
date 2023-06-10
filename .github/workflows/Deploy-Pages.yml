@@ -8,7 +8,7 @@ on:
       - "main"
 
 env:
-  GODOT_VERSION: 4.0.3
+  GODOT_VERSION: 3.5.1
   EXPORT_NAME: Tank-Trouble # Project Name
 
 jobs:
@@ -16,23 +16,20 @@ jobs:
     name: Web Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:4.0.3
+      image: barichello/godot-ci:3.5.1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           lfs: true
-      - name: Import Assets
-        run: |
-          godot -v -e --quit --headless
       - name: Setup Export Templates
         run: |
-          mkdir -v -p ~/.local/share/godot/export_templates
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          godot -v --headless --export-release "HTML5" ./build/web/index.html
+          godot -v --export "HTML5" ./build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
