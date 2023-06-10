@@ -8,7 +8,7 @@ on:
       - "main"
 
 env:
-  GODOT_VERSION: 3.3.4
+  GODOT_VERSION: 4.0.3
   EXPORT_NAME: Tank-Trouble # Project Name
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:3.3.4
+      image: barichello/godot-ci:4.0.3
     steps:
       - name: Checkout
         uses: actions/checkout@v3
