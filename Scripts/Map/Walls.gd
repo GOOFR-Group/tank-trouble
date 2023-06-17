@@ -17,6 +17,9 @@ func _init() -> void:
 		push_error("Walls failed to connect the players_spawned signal.")
 
 func _start() -> void:
+	if !GameManager.debug:
+		block_color_happy_path = block_color
+	
 	rng.randomize()
 	
 	var num_lines: int = GameManager.MAP_NUM_LINES

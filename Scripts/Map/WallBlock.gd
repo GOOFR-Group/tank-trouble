@@ -17,9 +17,6 @@ func setup() -> void:
 
 ## Changes the background color of the block
 func change_background_color(color :Color) -> void:
-	if !GameManager.debug:
-		return
-	
 	var texture := GradientTexture2D.new() 
 	texture.gradient = Gradient.new()
 	texture.gradient.set_color(0, color)

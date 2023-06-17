@@ -15,6 +15,7 @@ func _ready() -> void:
 			var point := Player.SpawnPoint.new(i, j) 
 			spawn_points.append(point)
 	
+	randomize()
 	spawn_points.shuffle()
 	
 	# Spawn players

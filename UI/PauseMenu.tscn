@@ -1,13 +1,13 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/UI/RestartMenu.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/UI/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=6]
@@ -45,7 +45,8 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="RestartMenu" type="CanvasLayer"]
+[node name="PauseMenu" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="Background" type="ColorRect" parent="."]
@@ -61,7 +62,7 @@ anchor_bottom = 0.5
 margin_top = -127.0
 margin_bottom = -113.0
 custom_fonts/font = SubResource( 3 )
-text = "Player won!"
+text = "Pause Menu"
 align = 1
 valign = 1
 uppercase = true
@@ -80,10 +81,10 @@ modulate = Color( 0.831373, 0.831373, 0.831373, 1 )
 margin_right = 509.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 text = "Menu"
 
-[node name="Restart" type="Button" parent="Background/ActionsHBoxContainer"]
+[node name="Resume" type="Button" parent="Background/ActionsHBoxContainer"]
 modulate = Color( 0.258824, 0.960784, 0.4, 1 )
 margin_left = 513.0
 margin_right = 1022.0
@@ -91,11 +92,12 @@ margin_bottom = 28.0
 grow_vertical = 2
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 6 )
-text = "Restart"
+text = "Resume"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
 anims/RESET = SubResource( 1 )
 anims/show = SubResource( 2 )
 
 [connection signal="pressed" from="Background/ActionsHBoxContainer/Menu" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Background/ActionsHBoxContainer/Restart" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Background/ActionsHBoxContainer/Resume" to="." method="_on_resume_button_pressed"]

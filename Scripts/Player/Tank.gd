@@ -23,7 +23,7 @@ export var rotation_speed :float = 5
 var _can_shoot :bool
 
 # Scenes
-onready var main_scene = get_node("/root/MainLevel")
+onready var main_level = get_node("/root/MainLevel")
 onready var bullet_scene = preload("res://Prefabs/Player/Bullet.tscn")
 onready var explosion_scene = preload("res://Prefabs/Particles/Explosion.tscn")
 
@@ -48,7 +48,7 @@ func _process(__ :float):
 		var bullet = bullet_scene.instance()
 		bullet.set_position(bullet_spawn_point.get_global_position())
 		bullet.set_rotation(bullet_spawn_point.get_global_rotation())
-		main_scene.add_child(bullet)
+		main_level.add_child(bullet)
 		
 		# Reset bullet timer
 		bullet_timer.start()
@@ -136,7 +136,7 @@ func _on_killed() -> void:
 	# Spawn explosion
 	var explosion = explosion_scene.instance()
 	explosion.set_position(position)
-	main_scene.add_child(explosion)
+	main_level.add_child(explosion)
 	
 	# Play explosion audio
 	explosion_audio.play()
