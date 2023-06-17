@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/SpawnSystem.gd" type="Script" id=1]
+[ext_resource path="res://UI/PauseMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/RestartMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Map/Walls.gd" type="Script" id=5]
 
@@ -13,7 +14,9 @@ gradient = SubResource( 2 )
 
 [node name="MainLevel" type="Node2D"]
 
-[node name="UI" parent="." instance=ExtResource( 3 )]
+[node name="PauseMenu" parent="." instance=ExtResource( 2 )]
+
+[node name="RestartMenu" parent="." instance=ExtResource( 3 )]
 
 [node name="SpawnSystem" type="Node2D" parent="."]
 script = ExtResource( 1 )
